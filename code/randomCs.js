@@ -103,49 +103,65 @@ Random.prototype = {
 })();
 
 
+var maxLength = 64;
 
+var order = [0,maxLength-1]
 
-var order = [0,63]
 search:
 for(denominator = 2; denominator < 100; denominator++){
   for(numerator = 1; numerator < denominator; numerator++){
     fraction = numerator / denominator;
-    number = Math.round(fraction * 64);
+    number = Math.round(fraction * maxLength);
     if(order.indexOf(number) === -1){
       order.push(number);
-      if(order.length === 64){
+      if(order.length === maxLength){
         break search;
       }
     }
   }  
 }
 
+var seed = 0;
+var take = 16;
 
-
-
-
+var allAs = [];
+var allBs = [];
 
 function msg_int(b) {
     switch (inlet) {
         case 0:
-            len = b;
+            take = b;
             break;
         case 1:
             seed = b;
+            regenerate();
+            break;
     }
     bang();
 }
-function bang() {
-    var as = [];
-    var bs = [];
+
+function regenerate() {
+    allAs = [];
+    allBs = [];
     rng = new Random.MT(seed);
-    for (i = 0; i < len; i++) {
+    for (i = 0; i < maxLength; i++) {
         do {
             var b = 2 * (rng.uniform() - 0.5);
             var c = 2 * (rng.uniform() - 0.5);
         } while (1 < Math.sqrt(b * b + c * c));
-        as.push(b);
-        bs.push(c);
+        allAs.push(b);
+        allBs.push(c);
+    }
+}
+
+function bang() {
+    var indices = order.slice(0, take).sort(function(a, b){return a-b});
+
+    var as = [];
+    var bs = [];
+    for (i = 0; i < take; i++) {
+        as.push(allAs[indices[i]]);
+        bs.push(allBs[indices[i]]);
     }
     outlet(1, as);
     outlet(0, bs);
