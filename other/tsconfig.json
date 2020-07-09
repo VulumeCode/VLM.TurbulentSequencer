@@ -1,0 +1,16 @@
+{
+	"compileOnSave": true,
+	"compilerOptions": {
+		"module": "CommonJS",
+		"target": "es3",
+		"noImplicitAny": true,
+		"allowUnreachableCode": true,
+		"sourceMap": false,
+		"lib": [ "es7" ],
+		"outDir": "../code/"
+	},
+	"include": [
+		"./*.ts", 
+		"./types/*.d.ts"
+	]
+}

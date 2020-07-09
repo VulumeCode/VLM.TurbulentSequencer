@@ -1,9 +1,10 @@
-"use strict";
-exports.__esModule = true;
 inlets = 1;
 outlets = 1;
-var seq = [];
-function list() {
+
+var seq: number[] = [];
+
+function list()
+{
     try {
         switch (inlet) {
             case 0:
@@ -11,19 +12,27 @@ function list() {
                 break;
         }
         bang();
-    }
-    catch (error) {
+        
+    } catch (error) {
         post(JSON.stringify(error));
     }
 }
-var asinT = function (a) {
-    return Math.asin(a) / Math.PI + 0.5;
+
+var asinT = function (a: number) {
+    return Math.asin(a)/Math.PI + 0.5;
 };
-function bang() {
+
+function bang()
+{
     var len = seq.length;
+
     var outSeq = [];
-    for (var i = 0; i < len; i++) {
+
+    for(let i = 0; i < len; i++){
         outSeq.push(asinT(seq[i]));
-    }
+    }    
+
     outlet(0, outSeq);
 }
+
+export {}
