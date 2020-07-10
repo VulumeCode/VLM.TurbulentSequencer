@@ -1,8 +1,8 @@
 inlets = 2;
 
-var probs=[];
-var floats=[];
-var notes=[];
+var probs: number[] = [];
+var floats: number[] = [];
+var notes: number[] = [];
 
 function list()
 {
@@ -21,9 +21,9 @@ function list()
 function calc()
 {
 			notes=[];
-			for (i = 0; i < floats.length; i++){
-				v = floats[i];
-				for (j = 0; j < probs.length; j++){
+			for (let i = 0; i < floats.length; i++){
+				const v = floats[i];
+				for (let j = 0; j < probs.length; j++){
 					if((v < 1.) ? (v < probs[j]) : (v == probs[j])){
 						notes.push(j);
 						break;
@@ -37,3 +37,6 @@ function bang()
 {
 	outlet(0, notes);
 }
+
+let module = {};
+export = {};

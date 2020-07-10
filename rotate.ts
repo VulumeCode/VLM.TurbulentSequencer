@@ -59,4 +59,5 @@ function bang()
 	outlet(0, outSeqReal);
 }
 
-export {}
+let module = {};
+export = {};

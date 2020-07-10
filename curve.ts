@@ -6,7 +6,7 @@ var center = 1;
 var len = 0;
 
 
-function msg_float(v)
+function msg_float(v: number)
 {
 	switch (inlet) {
 		case 0:
@@ -19,7 +19,7 @@ function msg_float(v)
 	bang();
 }
 
-function msg_int(v)
+function msg_int(v: number)
 {
 	switch (inlet) {
 		case 0:
@@ -37,7 +37,7 @@ function msg_int(v)
 
 function bang()
 {
-    curve=[];
+    let curve: number[] = [];
     
     curve.push(1);
 
@@ -56,3 +56,6 @@ function bang()
     }
 	outlet(0, curve);
 }
+
+let module = {};
+export = {};

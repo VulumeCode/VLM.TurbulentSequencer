@@ -1,11 +1,11 @@
+import * as FFT from './fft';
+
 inlets = 3;
 outlets = 4;
 
-FFT = require("fft.js");
-
-var seqReal = [];
-var seqImg = [];
-var curve = [];
+var seqReal: number[] = [];
+var seqImg: number[] = [];
+var curve: number[] = [];
 
 function list()
 {
@@ -26,43 +26,43 @@ function list()
 
 function bang()
 {
-    var len = seqReal.length;
+    const len = seqReal.length;
     if (len > 0) {
-        var fft = new FFT.complex(len, false);
-        var ffti = new FFT.complex(len, true);
+        let fft = new FFT.complex(len, false);
+        let ffti = new FFT.complex(len, true);
 
-        var inputTime = [];
-        for(var i = 0; i < len; i++){
+        let inputTime = [];
+        for(let i = 0; i < len; i++){
             inputTime.push(seqReal[i])
             inputTime.push(seqImg[i])
         }    
-        var inputFreq = [];
+        let inputFreq: number[] = [];
 
         fft.simple(inputFreq, inputTime, 'complex');
 
-        var outSeqFreqImg = [];
-        var outSeqFreqReal = [];
+        let outSeqFreqImg = [];
+        let outSeqFreqReal = [];
 
-        var outputFreq = [];
-        var v;
-        for(var i = 0; i < len; i++){
-            v = inputFreq.shift() * curve[i];
+        let outputFreq = [];
+        let v;
+        for(let i = 0; i < len; i++){
+            v = inputFreq.shift()! * curve[i];
             outSeqFreqReal.push(v / len);
             outputFreq.push(v);
-            v = inputFreq.shift() * curve[i];
+            v = inputFreq.shift()! * curve[i];
             outSeqFreqImg.push(v / len);
             outputFreq.push(v);
         }    
 
-        var outputTime = [];
+        let outputTime: number[] = [];
         ffti.simple(outputTime, outputFreq, 'complex');
         
 
-        var outSeqReal = [];
-        var outSeqImg = [];
-        for(var i = 0; i < len; i++){
-            outSeqReal.push(outputTime.shift() / len);
-            outSeqImg.push(outputTime.shift() / len);
+        let outSeqReal: number[] = [];
+        let outSeqImg: number[] = [];
+        for(let i = 0; i < len; i++){
+            outSeqReal.push(outputTime.shift()! / len);
+            outSeqImg.push(outputTime.shift()! / len);
         }  
 
         outlet(3, outSeqFreqImg);
@@ -71,3 +71,5 @@ function bang()
         outlet(0, outSeqReal);
     }
 }
+let module = {};
+export = {};

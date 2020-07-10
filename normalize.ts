@@ -1,7 +1,7 @@
 inlets = 1;
 outlets = 1;
 
-var input = [];
+var input: number[] = [];
 
 
 function list()
@@ -39,3 +39,6 @@ function bang()
     }
     outlet(0, output);
 }
+
+let module = {};
+export = {};
