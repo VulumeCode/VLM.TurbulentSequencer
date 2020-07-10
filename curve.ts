@@ -39,21 +39,30 @@ function bang()
 {
     let curve: number[] = [];
     
-    curve.push(1);
+	let max = 0;
 
-    var i = 1;
+    let i = 1;
     for (; i < center; i++) {
-        var e = len * ((center-i)/center);
-        
-        curve.push(1./Math.pow(e,beta));
+        const e = len * ((center-i)/center);
+		const s = 1./Math.pow(e,beta);
+		max = s > max ? s : max;
+        curve.push(s);
     }
 
 
     for (; i < len; i++) {
-        var e = i - center + 1;
-        
-        curve.push(1./Math.pow(e,beta));
-    }
+        const e = i - center + 1;
+        const s = 1./Math.pow(e,beta);
+		max = s > max ? s : max;
+        curve.push(s);
+	}
+	
+	for (const i in curve) {
+		curve[i] = curve[i]/max;
+	}
+
+    curve.unshift(1);
+
 	outlet(0, curve);
 }
 
