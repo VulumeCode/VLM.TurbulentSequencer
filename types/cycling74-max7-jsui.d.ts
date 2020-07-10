@@ -690,6 +690,7 @@ declare class Sketch {
 	 * @param {number} z2 [description]
 	 */
 	linesegment(x1: number, y1: number, z1: number, x2: number, y2: number, z2: number): void;
+	linesegment(x1: number, y1: number, x2: number, y2: number): void;
 
 	/**
 	 * Draws a filled triangle with three corners specified by the x1, y1, z1, x2, y2, z2, x3, y3, and z3 arguments. After this method has been called, the drawing position is updated to the location specified by the x3, y3, and z3 arguments.
