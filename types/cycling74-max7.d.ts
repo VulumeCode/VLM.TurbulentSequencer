@@ -22,6 +22,8 @@ declare var maxclass: string;
 declare var messagename: string;
 declare var patcher: Patcher;
 declare function error(message: any): void;
+declare function include(path: any): void;
+declare function include(path: any, scope: any): void;
 declare function cpost(message?: any): void;
 declare function post(message?: any): void;
 declare function messnamed(object_name: string, message_name: string, message_arguments?: string): void;
