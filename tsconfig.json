@@ -3,10 +3,13 @@
 	"compilerOptions": {
 		"module": "CommonJS",
 		"target": "es3",
+		"sourceMap": false,
 		"strict": true,
 		"noImplicitAny": true,
 		"allowUnreachableCode": true,
-		"sourceMap": false,
+		"noEmitOnError": true,
+		"assumeChangesOnlyAffectDirectDependencies": true,
+		"downlevelIteration": true,
 		"lib": [ "es7" ],
 		"outDir": "../VLM.pinksequencer Project/code/"
 	},
