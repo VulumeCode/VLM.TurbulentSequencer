@@ -46,8 +46,8 @@ function regenerate() {
     let rng = new Random.MT(seed);
     for (let i = 0; i < maxLength; i++) {
         do {
-            var b = 2 * (rng.uniform() - 0.5);
-            var c = 2 * (rng.uniform() - 0.5);
+            var b = 2 * (rng.normal() - 0.5);
+            var c = 2 * (rng.normal() - 0.5);
         } while (1 < Math.sqrt(b * b + c * c));
         allAs.push(b);
         allBs.push(c);
