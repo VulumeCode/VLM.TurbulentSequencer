@@ -4,7 +4,7 @@ outlets = 0;
 var seqReal: number[] = [];
 var seqImg: number[] = [];
 
-let list = function(_:IArguments)
+function list()
 {
     switch (inlet) {
         case 0:
@@ -28,7 +28,6 @@ function atSketch(f: (_:Sketch) => void){
     f(sketch);
     sketch.glpopmatrix();
 }
-
 
 function draw() {
     let len = seqReal.length;

@@ -67,5 +67,8 @@ function bang() {
     outlet(0, bs);
 };
 
+regenerate();
+bang();
+
 let module = {};
 export = {};
