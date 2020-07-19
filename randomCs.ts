@@ -65,10 +65,12 @@ function bang() {
     }
     outlet(1, as);
     outlet(0, bs);
-};
+}
 
-regenerate();
-bang();
+function loadbang() {
+  regenerate();
+  bang();
+}
 
 let module = {};
 export = {};

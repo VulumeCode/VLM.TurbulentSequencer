@@ -6,6 +6,16 @@ let view: number[] = [];
 let steps = 0;
 let viewLength: number;
 
+
+function loadValues(a: string){
+    values = JSON.parse(a);
+}
+
+function save(){
+	embedmessage("loadValues",JSON.stringify(values));
+}
+
+
 function msg_int(v: number)
 {
     steps = v;
