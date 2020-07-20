@@ -1,46 +1,51 @@
-inlets = 1;
-outlets = 1;
+inlets = 2;
+outlets = 2;
 
 let values: number[] = [];
 let view: number[] = [];
 let steps = 0;
-let viewLength: number;
-
-
-function loadValues(a: string){
-    values = JSON.parse(a);
-}
-
-function save(){
-	embedmessage("loadValues",JSON.stringify(values));
-}
-
+let viewLength = 10;
 
 function msg_int(v: number)
 {
     steps = v;
-
-    view = values.slice(steps + viewLength, steps + viewLength + viewLength);
     bang();
 }
 
+function arrays_equal(a: any[],b: any[]) { return !!a && !!b && !(a<b || b<a); }
+
 function list()
 {
-    const input = arrayfromargs(arguments);
+	switch (inlet) {
+		case 0:
+            const input = arrayfromargs(arguments);
     
-    viewLength = input.length;
-
-    if(0===values.length){
-        for (let i = 0; i < viewLength*3; i++) {
-            values.push(0);
-        }
-    }
-
-    values.splice(viewLength + steps, viewLength, ...input);
+            if(0===values.length){
+                for (let i = 0; i < viewLength*3; i++) {
+                    values.push(0);
+                }
+            }
+        
+            values.splice(viewLength + steps, viewLength, ...input);   
+            outlet(1, values);
+            outlet(0, "setlist " + view.join(' '));
+			break;
+		case 1:
+            const updatedValues = arrayfromargs(arguments);
+            if(arrays_equal(values, updatedValues)){
+                return;
+            }
+            else {
+                values = updatedValues;
+                bang();
+            }
+			break;
+	}
 }
 
 function bang()
 {
+    view = values.slice(steps + viewLength, steps + viewLength + viewLength);
     outlet(0, view);
 }
 
