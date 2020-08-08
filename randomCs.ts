@@ -1,4 +1,5 @@
 import * as Random from './random';
+import { postError } from './jsCommon';
 
 inlets = 2;
 outlets = 2;
@@ -28,16 +29,20 @@ let allAs: number[] = [];
 let allBs: number[] = [];
 
 function msg_int(b: number) {
+  try {
     switch (inlet) {
-        case 0:
-            take = b;
-            break;
-        case 1:
-            seed = b;
-            regenerate();
-            break;
+      case 0:
+          take = b;
+          break;
+      case 1:
+          seed = b;
+          regenerate();
+          break;
     }
     bang();
+  } catch (e) {
+    postError(e);
+  }
 }
 
 function regenerate() {

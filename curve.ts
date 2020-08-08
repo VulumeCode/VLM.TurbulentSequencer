@@ -3,7 +3,7 @@ outlets = 1;
 
 var beta = 1;
 var center = 1;
-var len = 0;
+var len = 2;
 
 
 function msg_float(v: number)

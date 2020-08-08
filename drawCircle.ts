@@ -1,3 +1,5 @@
+import { postError } from './jsCommon';
+
 inlets = 2;
 outlets = 0;
 
@@ -80,11 +82,16 @@ function draw() {
 var vbrgb = [0,0,0,0];
 var vfrgb = [0.118, 0.118, 0.118, 1.000];
 
-// set up jsui defaults to 2d
-sketch.default2d();
-// initialize graphics
-draw();
-refresh();
+try {
+    // set up jsui defaults to 2d
+    sketch.default2d();
+    // initialize graphics
+    draw();
+    refresh();
+} catch (e) {
+    postError(e, "Error initializing drawCircle");
+}
+
 
 let module = {};
 export = {};

@@ -1,3 +1,5 @@
+import { postError } from './jsCommon';
+
 inlets = 1;
 outlets = 1;
 
@@ -14,7 +16,7 @@ function list()
         bang();
         
     } catch (error) {
-        post(JSON.stringify(error));
+        postError(error);
     }
 }
 

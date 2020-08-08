@@ -1,33 +1,45 @@
 import * as FFT from './fft';
+import { postError } from './jsCommon';
 
 inlets = 3;
 outlets = 4;
 
-var seqReal: number[] = [];
-var seqImg: number[] = [];
-var curve: number[] = [];
+var seqReal: number[] = [0,0];
+var seqImg: number[] = [0,0];
+var curve: number[] = [0,0];
 
 function list()
 {
-	switch (inlet) {
-		case 0:
-            seqReal = arrayfromargs(arguments);
-            bang();
-			break;
-        case 1:
-            seqImg = arrayfromargs(arguments);
-            break;
-        case 2:
-            curve = arrayfromargs(arguments);
-            bang();
-            break;
-	}
+    try {
+        switch (inlet) {
+            case 0:
+                seqReal = arrayfromargs(arguments);
+                bang();
+                break;
+            case 1:
+                seqImg = arrayfromargs(arguments);
+                break;
+            case 2:
+                curve = arrayfromargs(arguments);
+                bang();
+                break;
+        }
+    } catch (e) {
+        postError(e)
+    }
 }
 
 function bang()
 {
     const len = seqReal.length;
-    if (len > 0) {
+    if (len === 1) {
+        outlet(3, seqImg);
+        outlet(2, seqReal);
+        outlet(1, seqImg);
+        outlet(0, seqReal);
+    }
+    else 
+    if (len > 1) {
         let fft = new FFT.complex(len, false);
         let ffti = new FFT.complex(len, true);
 
