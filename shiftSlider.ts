@@ -8,7 +8,7 @@ let viewLength = 10;
 
 function msg_int(v: number)
 {
-    steps = v;
+    steps = -v;
     bang();
 }
 
@@ -46,6 +46,7 @@ function list()
 function bang()
 {
     view = values.slice(steps + viewLength, steps + viewLength + viewLength);
+
     outlet(0, view);
 }
 

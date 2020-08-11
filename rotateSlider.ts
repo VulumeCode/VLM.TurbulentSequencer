@@ -10,7 +10,7 @@ let steps = 0;
 function msg_int(v: number)
 {
     const l = viewLength;
-    steps = (v + l) % l;
+    steps = (-v + l) % l;
     bang();
 }
 
