@@ -57,14 +57,26 @@ function hsvToRgb(h: number, s: number, v: number) {
 function draw() {
     let len = seqReal.length;
     atSketch($ =>{
-        $.glscale(1.9,1.9);
+        $.glscale(1.8,1.8);
         $.gltranslate(-0.5,-0.5);
-        $.gllinewidth(2);
-        
         // set how the polygons are rendered
         $.glclearcolor(vbrgb[0], vbrgb[1], vbrgb[2], vbrgb[3]) // set the clear color
         $.glclear() // erase the background
 
+        $.gllinewidth(5);
+        $.moveto(seqReal[len-1], seqImg[len-1])
+
+        $.glcolor(0,0,0,0.7)
+        for (
+            let i = 0;
+            i < seqReal.length;
+            i++ // iterate through the columns
+        ) {
+            $.lineto(seqReal[i], seqImg[i]);
+        }
+
+
+        $.gllinewidth(2);
         $.moveto(seqReal[len-1], seqImg[len-1])
 
         for (
@@ -72,10 +84,12 @@ function draw() {
             i < seqReal.length;
             i++ // iterate through the columns
         ) {
-            const [r,g,b] = hsvToRgb(0.545666667,1,i / seqReal.length)
+            const [r,g,b] = hsvToRgb(0.83-((0.83-0.5)*(i / seqReal.length)),1,0.9)
             $.glcolor(r,g,b,1)
             $.lineto(seqReal[i], seqImg[i]);
         }
+
+
     });
 }
 
@@ -91,7 +105,6 @@ try {
 } catch (e) {
     postError(e, "Error initializing drawCircle");
 }
-
 
 let module = {};
 export = {};
