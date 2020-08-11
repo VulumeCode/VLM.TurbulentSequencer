@@ -8,6 +8,10 @@ var seqReal: number[] = [0,0];
 var seqImg: number[] = [0,0];
 var curve: number[] = [0,0];
 
+let fft: FFT.complex;
+let ffti: FFT.complex;
+let prevLen = -1;
+
 function list()
 {
     try {
@@ -40,9 +44,12 @@ function bang()
     }
     else 
     if (len > 1) {
-        let fft = new FFT.complex(len, false);
-        let ffti = new FFT.complex(len, true);
-
+        if(len != prevLen){
+            fft = new FFT.complex(len, false);
+            ffti = new FFT.complex(len, true);
+            prevLen = len;
+        }
+        
         let inputTime = [];
         for(let i = 0; i < len; i++){
             inputTime.push(seqReal[i])
