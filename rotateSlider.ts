@@ -25,7 +25,7 @@ function list()
             values = input.slice(-steps, viewLength).concat(input.slice(0, -steps));
 
             outlet(1, values);
-            outlet(0, "setlist " + view.join(' '));
+            // outlet(0, "setlist " + view.join(' '));
             break;
         case 1:
             const updatedValues = arrayfromargs(arguments);
