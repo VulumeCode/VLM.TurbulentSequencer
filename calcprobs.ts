@@ -16,7 +16,7 @@ function list()
 			noteProbs = arrayfromargs(arguments);
 			break;
 		case 2:
-			noteToggles[arguments[0]] = +(arguments[1] == 0); 
+			noteToggles = arrayfromargs(arguments);
 			break;
 	}
 	bang();
