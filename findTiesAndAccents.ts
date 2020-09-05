@@ -12,11 +12,13 @@ function list()
             floats = arrayfromargs(arguments);
             bang();
             break;
-        case 1:
-            choices = arrayfromargs(arguments);
-            bang();
-            break;
     }
+}
+
+function setChoices()
+{
+    choices = arrayfromargs(arguments);
+    bang();
 }
 
 function bang(){
@@ -24,21 +26,23 @@ function bang(){
     const velocities: number[] = []
     const addChoice = (choice :string ) => {
         velocities.push(
-            choice.includes('R')
+            choice.indexOf('R') >= 0
                 ? 0 
-                : choice.includes('A')
+                : choice.indexOf('A') >= 0
                     ? 127
                     : 63
         )
         durations.push(
-            choice.includes('L')
+            choice.indexOf('L') >= 0
                 ? 60
                 : 120
         )
     }
-    floats.forEach(
-        (f)=>addChoice(choices[Math.floor(f*5.)])
-    )
+    for (const f of floats) {
+        addChoice(choices[Math.floor(f*(5*nextFloatDown))]);
+    }
     outlet(0, ["duration", 1, ...durations] );
     outlet(0, ["velocity", 1, ...velocities]);
 }
+
+const nextFloatDown = (1 - 2**-53);
