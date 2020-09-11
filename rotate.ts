@@ -5,27 +5,25 @@ var seqReal: number[] = [];
 var seqImg: number[] = [];
 var angle = 0;
 
-function msg_float(v: number)
-{
-	switch (inlet) {
+function msg_float(v: number) {
+    switch (inlet) {
         case 2:
             angle = v;
             break;
-	}
-	bang();
+    }
+    bang();
 }
 
-function list()
-{
-	switch (inlet) {
-		case 0:
+function list() {
+    switch (inlet) {
+        case 0:
             seqReal = arrayfromargs(arguments);
             bang();
-			break;
+            break;
         case 1:
             seqImg = arrayfromargs(arguments);
             break;
-	}
+    }
 }
 
 var cartopol = function (x: number, y: number) {
@@ -35,28 +33,27 @@ var cartopol = function (x: number, y: number) {
     });
 };
 
-var poltocar = function (t: number, r: number) {  
+var poltocar = function (t: number, r: number) {
     return ({
         x: r * Math.cos(t),
         y: r * Math.sin(t)
     });
 };
 
-function bang()
-{
+function bang() {
     var len = seqReal.length;
     var outSeqReal = [];
     var outSeqImg = [];
 
-    for(let i = 0; i < len; i++){
+    for (let i = 0; i < len; i++) {
         var pol = cartopol(seqReal[i], seqImg[i]);
         var outCar = poltocar(pol.t - angle, pol.r);
         outSeqReal.push(outCar.x);
         outSeqImg.push(outCar.y);
-    }    
+    }
 
     outlet(1, outSeqImg);
-	outlet(0, outSeqReal);
+    outlet(0, outSeqReal);
 }
 
 let module = {};

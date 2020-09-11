@@ -5,40 +5,34 @@ let value: number | any[] | string;
 let t: Task | null;
 let time = jsarguments.length > 1 ? jsarguments[1] : 1000;
 
-function debounce()
-{
-    if(!t){
+function debounce() {
+    if (!t) {
         t = new Task(bounce);
         t.schedule(time);
     }
 }
 
-function bounce()
-{
+function bounce() {
     t = null;
     outlet(0, value);
 }
 
-function msg_int(v: number)
-{
+function msg_int(v: number) {
     value = v;
     debounce();
 }
 
-function msg_float(v: number)
-{
+function msg_float(v: number) {
     value = v;
     debounce();
 }
 
-function list()
-{
+function list() {
     value = arrayfromargs(arguments);
     debounce();
 }
 
-function bang()
-{
+function bang() {
     value = 'bang';
     debounce();
 }

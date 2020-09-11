@@ -5,8 +5,7 @@ outlets = 1;
 
 var seq: number[] = [];
 
-function list()
-{
+function list() {
     try {
         switch (inlet) {
             case 0:
@@ -14,25 +13,24 @@ function list()
                 break;
         }
         bang();
-        
+
     } catch (error) {
         postError(error);
     }
 }
 
 var asinT = function (a: number) {
-    return Math.asin(a)/Math.PI + 0.5;
+    return Math.asin(a) / Math.PI + 0.5;
 };
 
-function bang()
-{
+function bang() {
     var len = seq.length;
 
     var outSeq = [];
 
-    for(let i = 0; i < len; i++){
+    for (let i = 0; i < len; i++) {
         outSeq.push(asinT(seq[i]));
-    }    
+    }
 
     outlet(0, outSeq);
 }

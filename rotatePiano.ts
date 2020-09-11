@@ -1,29 +1,27 @@
 inlets = 2;
 outlets = 3;
 
-var noteToggles: number[]  = [1,1,1,1,1,1,1,1,1,1,1,1];
+var noteToggles: number[] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
-var noteView: number[]  = [1,1,1,1,1,1,1,1,1,1,1,1];
-var noteViewPrev: (number|undefined)[]  = [undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined];
+var noteView: number[] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+var noteViewPrev: (number | undefined)[] = [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined];
 let viewLength = 12;
 let steps = 0;
 
-function msg_int(v: number)
-{
+function msg_int(v: number) {
     const l = viewLength;
     steps = (-v + l) % l;
     setPiano();
 }
 
-function arrays_equal(a: any[],b: any[]) { return !!a && !!b && !(a<b || b<a); }
+function arrays_equal(a: any[], b: any[]) { return !!a && !!b && !(a < b || b < a); }
 
-function list()
-{
+function list() {
     switch (inlet) {
-		case 0:
+        case 0:
             const i = (arguments[0] + steps) % viewLength;
-            const v = +(arguments[1] == 0); 
-			if(noteToggles[i] === v){
+            const v = +(arguments[1] == 0);
+            if (noteToggles[i] === v) {
                 return;
             }
             else {
@@ -36,7 +34,7 @@ function list()
             break;
         case 1:
             const updatedValues = arrayfromargs(arguments);
-            if(arrays_equal(noteToggles, updatedValues)){
+            if (arrays_equal(noteToggles, updatedValues)) {
                 return;
             }
             else {
@@ -48,16 +46,14 @@ function list()
 }
 
 
-function calcView()
-{
+function calcView() {
     noteView = noteToggles.slice(steps, noteToggles.length).concat(noteToggles.slice(0, steps));
 }
 
-function setPiano()
-{
+function setPiano() {
     calcView();
-    noteView.forEach((v,i)=>{
-        if(v !== noteViewPrev[i]){
+    noteView.forEach((v, i) => {
+        if (v !== noteViewPrev[i]) {
             outlet(0, ["set", i, +!v]);
         }
     });

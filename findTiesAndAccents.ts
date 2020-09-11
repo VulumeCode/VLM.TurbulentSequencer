@@ -5,8 +5,7 @@ var floats: number[] = [];
 
 var choices: string[] = [];
 
-function list()
-{
+function list() {
     switch (inlet) {
         case 0:
             floats = arrayfromargs(arguments);
@@ -15,19 +14,18 @@ function list()
     }
 }
 
-function setChoices()
-{
+function setChoices() {
     choices = arrayfromargs(arguments);
     bang();
 }
 
-function bang(){
+function bang() {
     const durations: number[] = []
     const velocities: number[] = []
-    const addChoice = (choice :string ) => {
+    const addChoice = (choice: string) => {
         velocities.push(
             choice.indexOf('R') >= 0
-                ? 0 
+                ? 0
                 : choice.indexOf('A') >= 0
                     ? 127
                     : 63
@@ -39,10 +37,10 @@ function bang(){
         )
     }
     for (const f of floats) {
-        addChoice(choices[Math.floor(f*(5*nextFloatDown))]);
+        addChoice(choices[Math.floor(f * (5 * nextFloatDown))]);
     }
-    outlet(0, ["duration", 1, ...durations] );
+    outlet(0, ["duration", 1, ...durations]);
     outlet(0, ["velocity", 1, ...velocities]);
 }
 
-const nextFloatDown = (1 - 2**-53);
+const nextFloatDown = (1 - 2 ** -53);

@@ -1,7 +1,7 @@
 
 class Random {
     _normal: null | number = null;
-    
+
     next() {
         return 0 | 255 * this.uniform();
     }
@@ -97,4 +97,4 @@ class MT extends Random {
     };
 }
 
-export { Random, MT}
+export { Random, MT }

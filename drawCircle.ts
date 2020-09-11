@@ -6,8 +6,7 @@ outlets = 0;
 var seqReal: number[] = [];
 var seqImg: number[] = [];
 
-function list()
-{
+function list() {
     switch (inlet) {
         case 0:
             seqReal = arrayfromargs(arguments);
@@ -19,13 +18,12 @@ function list()
     bang();
 }
 
-function bang()
-{
+function bang() {
     draw();
     refresh();
 }
 
-function atSketch(f: (_:Sketch) => void){
+function atSketch(f: (_: Sketch) => void) {
     sketch.glpushmatrix();
     f(sketch);
     sketch.glpopmatrix();
@@ -33,40 +31,40 @@ function atSketch(f: (_:Sketch) => void){
 
 function hsvToRgb(h: number, s: number, v: number) {
     var r, g, b;
-  
+
     var i = Math.floor(h * 6);
     var f = h * 6 - i;
     var p = v * (1 - s);
     var q = v * (1 - f * s);
     var t = v * (1 - (1 - f) * s);
-  
+
     switch (i % 6) {
-      case 0: r = v, g = t, b = p; break;
-      case 1: r = q, g = v, b = p; break;
-      case 2: r = p, g = v, b = t; break;
-      case 3: r = p, g = q, b = v; break;
-      case 4: r = t, g = p, b = v; break;
-      case 5: r = v, g = p, b = q; break;
-      default: throw "impossible";
+        case 0: r = v, g = t, b = p; break;
+        case 1: r = q, g = v, b = p; break;
+        case 2: r = p, g = v, b = t; break;
+        case 3: r = p, g = q, b = v; break;
+        case 4: r = t, g = p, b = v; break;
+        case 5: r = v, g = p, b = q; break;
+        default: throw "impossible";
     }
-  
-    return [ r, g, b ];
+
+    return [r, g, b];
 }
 
 
 function draw() {
     let len = seqReal.length;
-    atSketch($ =>{
-        $.glscale(1.8,1.8);
-        $.gltranslate(-0.5,-0.5);
+    atSketch($ => {
+        $.glscale(1.8, 1.8);
+        $.gltranslate(-0.5, -0.5);
         // set how the polygons are rendered
         $.glclearcolor(vbrgb[0], vbrgb[1], vbrgb[2], vbrgb[3]) // set the clear color
         $.glclear() // erase the background
 
         $.gllinewidth(5);
-        $.moveto(seqReal[len-1], seqImg[len-1])
+        $.moveto(seqReal[len - 1], seqImg[len - 1])
 
-        $.glcolor(0,0,0,0.7)
+        $.glcolor(0, 0, 0, 0.7)
         for (
             let i = 0;
             i < seqReal.length;
@@ -77,15 +75,15 @@ function draw() {
 
 
         $.gllinewidth(2);
-        $.moveto(seqReal[len-1], seqImg[len-1])
+        $.moveto(seqReal[len - 1], seqImg[len - 1])
 
         for (
             let i = 0;
             i < seqReal.length;
             i++ // iterate through the columns
         ) {
-            const [r,g,b] = hsvToRgb(0.83-((0.83-0.5)*(i / seqReal.length)),1,0.9)
-            $.glcolor(r,g,b,1)
+            const [r, g, b] = hsvToRgb(0.83 - ((0.83 - 0.5) * (i / seqReal.length)), 1, 0.9)
+            $.glcolor(r, g, b, 1)
             $.lineto(seqReal[i], seqImg[i]);
         }
 
@@ -93,7 +91,7 @@ function draw() {
     });
 }
 
-var vbrgb = [0,0,0,0];
+var vbrgb = [0, 0, 0, 0];
 var vfrgb = [0.118, 0.118, 0.118, 1.000];
 
 try {

@@ -6,20 +6,20 @@ outlets = 2;
 
 var maxLength: number = 64;
 
-var order: number[] = [0,maxLength-1]
+var order: number[] = [0, maxLength - 1]
 
 search:
-for(let denominator = 2; denominator < 100; denominator++){
-  for(let numerator = 1; numerator < denominator; numerator++){
-    const fraction = numerator / denominator;
-    const number = Math.round(fraction * maxLength);
-    if(order.indexOf(number) === -1){
-      order.push(number);
-      if(order.length === maxLength){
-        break search;
-      }
+for (let denominator = 2; denominator < 100; denominator++) {
+    for (let numerator = 1; numerator < denominator; numerator++) {
+        const fraction = numerator / denominator;
+        const number = Math.round(fraction * maxLength);
+        if (order.indexOf(number) === -1) {
+            order.push(number);
+            if (order.length === maxLength) {
+                break search;
+            }
+        }
     }
-  }  
 }
 
 let seed: number = 0;
@@ -29,20 +29,20 @@ let allAs: number[] = [];
 let allBs: number[] = [];
 
 function msg_int(b: number) {
-  try {
-    switch (inlet) {
-      case 0:
-          take = b;
-          break;
-      case 1:
-          seed = b;
-          regenerate();
-          break;
+    try {
+        switch (inlet) {
+            case 0:
+                take = b;
+                break;
+            case 1:
+                seed = b;
+                regenerate();
+                break;
+        }
+        bang();
+    } catch (e) {
+        postError(e);
     }
-    bang();
-  } catch (e) {
-    postError(e);
-  }
 }
 
 function regenerate() {
@@ -60,7 +60,7 @@ function regenerate() {
 }
 
 function bang() {
-    var indices = order.slice(0, take).sort(function(a, b){return a-b});
+    var indices = order.slice(0, take).sort(function (a, b) { return a - b });
 
     var as = [];
     var bs = [];
@@ -73,8 +73,8 @@ function bang() {
 }
 
 function loadbang() {
-  regenerate();
-  bang();
+    regenerate();
+    bang();
 }
 
 let module = {};
