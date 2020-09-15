@@ -1,12 +1,11 @@
 inlets = 2;
-outlets = 1;
+outlets = 2;
 
 let floats: number[] = [];
 
 let choices: string[] = [];
 
 let bot: number;
-let mid: number;
 let top: number;
 
 
@@ -29,11 +28,6 @@ function setBot(n: number) {
     bang();
 }
 
-function setMid(n: number) {
-    mid = n;
-    bang();
-}
-
 function setTop(n: number) {
     top = n;
     bang();
@@ -42,15 +36,14 @@ function setTop(n: number) {
 function bang() {
     const stages = [
         bot,
-        0.5 - (mid / 2),
-        0.5 + (mid / 2),
-        1 - top,
+        1 + top,
         1
     ]
     const durations: number[] = []
     const velocities: number[] = []
-    const addChoice = (choice: string) => {
-        velocities.push(
+    const addChoice = (choice: string | undefined) => {
+        if (choice !== undefined) {
+            velocities.push(
             choice.indexOf('R') >= 0
                 ? 0
                 : choice.indexOf('A') >= 0
@@ -58,10 +51,11 @@ function bang() {
                     : 63
         )
         durations.push(
-            choice.indexOf('L') >= 0
+            choice.indexOf('T') >= 0
                 ? 120
                 : 60
-        )
+            )
+        }
     }
     for (let f of floats) {
         let i: number
@@ -75,6 +69,7 @@ function bang() {
     }
     outlet(0, ["duration", 1, ...durations]);
     outlet(0, ["velocity", 1, ...velocities]);
+    outlet(1, velocities.map(x => +(x === 127)));
 }
 
 const nextFloatDown = (1 - 2 ** -53);
