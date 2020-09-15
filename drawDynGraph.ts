@@ -1,20 +1,29 @@
 import { postError, atSketch } from './jsCommon';
 
-inlets = 2;
+inlets = 3;
 outlets = 0;
 
-var seqReal: number[] = [];
-var seqImg: number[] = [];
+var seq: number[] = [];
+
+var bot: number;
+var top: number;
 
 function list() {
     switch (inlet) {
         case 0:
-            seqReal = arrayfromargs(arguments);
-            break;
-        case 1:
-            seqImg = arrayfromargs(arguments);
+            seq = arrayfromargs(arguments);
             break;
     }
+    bang();
+}
+
+function setBot(n: number) {
+    bot = n;
+    bang();
+}
+
+function setTop(n: number) {
+    top = n;
     bang();
 }
 
@@ -22,7 +31,6 @@ function bang() {
     draw();
     refresh();
 }
-
 
 function hsvToRgb(h: number, s: number, v: number) {
     var r, g, b;
@@ -48,7 +56,7 @@ function hsvToRgb(h: number, s: number, v: number) {
 
 
 function draw() {
-    let len = seqReal.length;
+    let len = seq.length;
     atSketch($ => {
         $.glscale(1.8, 1.8);
         $.gltranslate(-0.5, -0.5);
@@ -57,31 +65,40 @@ function draw() {
         $.glclear() // erase the background
 
         $.gllinewidth(5);
-        $.moveto(seqReal[len - 1], seqImg[len - 1])
+        $.moveto(seq[0], 1);
 
-        $.glcolor(0, 0, 0, 0.7)
+        $.glcolor(0, 0, 0, 0.7);
         for (
-            let i = 0;
-            i < seqReal.length;
+            let i = 1;
+            i < len;
             i++ // iterate through the columns
         ) {
-            $.lineto(seqReal[i], seqImg[i]);
+            $.lineto(seq[i], (len - i) / len);
         }
 
 
         $.gllinewidth(2);
-        $.moveto(seqReal[len - 1], seqImg[len - 1])
+        $.moveto(seq[0], 1);
 
         for (
-            let i = 0;
-            i < seqReal.length;
+            let i = 1;
+            i < len;
             i++ // iterate through the columns
         ) {
-            const [r, g, b] = hsvToRgb(0.83 - ((0.83 - 0.5) * (i / seqReal.length)), 1, 0.9)
+            const [r, g, b] = hsvToRgb(0.83 - ((0.83 - 0.5) * (i / len)), 1, 0.9)
             $.glcolor(r, g, b, 1)
-            $.lineto(seqReal[i], seqImg[i]);
+            $.lineto(seq[i], (len - i) / len);
         }
 
+        $.gllinewidth(1);
+        $.glcolor(0, 0, 0, 0.7);
+        $.moveto(bot, 0);
+        $.lineto(bot, 1);
+
+        $.gllinewidth(1);
+        $.glcolor(0, 0, 0, 0.7);
+        $.moveto(1 + top, 0);
+        $.lineto(1 + top, 1);
 
     });
 }
