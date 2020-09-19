@@ -67,9 +67,11 @@ function bang() {
         }
         addChoice(choices[i]);
     }
-    outlet(0, ["duration", 1, ...durations]);
-    outlet(0, ["velocity", 1, ...velocities]);
-    outlet(1, velocities.map(x => +(x === 127)));
+    if (durations.length > 0 && velocities.length > 0) {
+        outlet(0, ["duration", 1, ...durations]);
+        outlet(0, ["velocity", 1, ...velocities]);
+        outlet(1, velocities.map(x => +(x === 127)));
+    }
 }
 
 const nextFloatDown = (1 - 2 ** -53);
