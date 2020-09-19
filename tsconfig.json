@@ -11,7 +11,7 @@
 		"assumeChangesOnlyAffectDirectDependencies": true,
 		"downlevelIteration": true,
 		"lib": [ "es7" ],
-		"outDir": "../VLM.pinksequencer Project/code/"
+		"outDir": "../VLM.Turbulent Sequencer Project/code/"
 	},
 	"include": [
 		"./*.ts", 
