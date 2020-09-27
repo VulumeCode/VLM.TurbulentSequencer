@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Program Files\\Cycling '74\\Max 8\\resources\\packages\\max-mxj\\java-classes\\lib\\max.jar"
+    ]
+}
