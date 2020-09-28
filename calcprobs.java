@@ -1,5 +1,4 @@
 import java.util.LinkedList;
-
 import com.cycling74.max.*;
 
 public class calcprobs extends MaxObject {

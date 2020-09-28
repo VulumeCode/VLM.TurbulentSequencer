@@ -1,11 +1,10 @@
 import java.util.LinkedList;
-
 import com.cycling74.max.*;
 
 public class findnotes extends MaxObject {
-    float[] probs;
-    float[] floats;
-    int[] notes;
+    float[] probs = new float[0];
+    float[] floats = new float[0];
+    int[] notes = new int[0];
 
     findnotes() {
         declareInlets(new int[] { DataTypes.LIST, DataTypes.LIST });

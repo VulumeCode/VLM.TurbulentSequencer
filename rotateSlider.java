@@ -3,7 +3,6 @@ import com.cycling74.max.*;
 public class rotateSlider extends MaxObject {
 
     Atom[] values;
-    Atom[] view;
     int viewLength = 12;
     int steps = 0;
 
@@ -61,7 +60,8 @@ public class rotateSlider extends MaxObject {
     }
 
     protected void outputView() {
-        view = Atom.rotate(values, -steps);
-        outlet(0, view);
+        if (values != null) {
+            outlet(0, Atom.rotate(values, -steps));
+        }
     }
 }
