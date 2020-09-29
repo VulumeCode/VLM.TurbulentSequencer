@@ -6,6 +6,8 @@ public class rotate extends MaxObject {
     float angle;
 
     rotate() {
+        new PolToCar();
+        new CarToPol();
         declareInlets(new int[] { DataTypes.LIST, DataTypes.LIST, DataTypes.FLOAT });
         declareOutlets(new int[] { DataTypes.LIST, DataTypes.LIST });
     }
@@ -34,6 +36,9 @@ public class rotate extends MaxObject {
     }
 
     private class CarToPol {
+        CarToPol() {
+        }
+
         float t, r;
 
         CarToPol(float x, float y) {
@@ -43,6 +48,9 @@ public class rotate extends MaxObject {
     }
 
     private class PolToCar {
+        PolToCar() {
+        }
+
         float x, y;
 
         PolToCar(float t, float r) {
