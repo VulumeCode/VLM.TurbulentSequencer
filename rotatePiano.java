@@ -2,7 +2,7 @@ import com.cycling74.max.*;
 
 public class rotatePiano extends MaxObject {
 
-    int[] noteToggles = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+    int[] noteToggles = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
     Atom[] noteView = Atom.newAtom(new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 });
     Atom[] noteViewPrev = Atom.newAtom(new int[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 });

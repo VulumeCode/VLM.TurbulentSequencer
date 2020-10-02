@@ -10,6 +10,10 @@ public class fftfilter extends MaxObject {
     int prevLen = -1;
 
     fftfilter() {
+        new Factorize();
+        new ComplexFloatFFT();
+        new ComplexFloatFFT_Mixed();
+
         declareInlets(new int[] { DataTypes.LIST, DataTypes.LIST, DataTypes.LIST });
         declareOutlets(new int[] { DataTypes.LIST, DataTypes.LIST, DataTypes.LIST, DataTypes.LIST });
     }
@@ -32,6 +36,10 @@ public class fftfilter extends MaxObject {
     }
 
     protected void bang() {
+        if (seqReal.length != curve.length && seqImg.length != curve.length) {
+            return;
+        }
+
         int len = seqReal.length;
         if (len == 1) {
             outlet(3, seqImg);

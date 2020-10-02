@@ -24,7 +24,10 @@
  * @author not subject to copyright.
  */
 
-public abstract class ComplexFloatFFT {
+public class ComplexFloatFFT {
+  ComplexFloatFFT() {
+    // dummy
+  }
 
   int n;
 
@@ -99,7 +102,8 @@ public abstract class ComplexFloatFFT {
    *    Im(d[i]) = data[i0 + stride*i+1]
    * </PRE>
    */
-  public abstract void transform(float data[], int i0, int stride);
+  public void transform(float data[], int i0, int stride) {
+  };
 
   /** Compute the (unnomalized) inverse FFT of data, leaving it in place. */
   public void backtransform(float data[]) {
@@ -116,7 +120,8 @@ public abstract class ComplexFloatFFT {
    *    Im(D[i]) = data[i0 + stride*i+1]
    * </PRE>
    */
-  public abstract void backtransform(float data[], int i0, int stride);
+  public void backtransform(float data[], int i0, int stride) {
+  };
 
   /**
    * Return the normalization factor. Multiply the elements of the

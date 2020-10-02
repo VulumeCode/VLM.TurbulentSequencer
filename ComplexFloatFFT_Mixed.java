@@ -21,6 +21,9 @@
  */
 
 public class ComplexFloatFFT_Mixed extends ComplexFloatFFT {
+    ComplexFloatFFT_Mixed() {
+        // dummy
+    }
     static final double PI = (float) Math.PI;
     static final int FORWARD = -1;
     static final int BACKWARD = +1;

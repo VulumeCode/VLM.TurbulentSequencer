@@ -36,34 +36,33 @@ public class findTiesAndAccents extends MaxObject {
         bang();
     }
 
-    float nextFloatDown = (1 - 2 ^ -53);
-
     protected void bang() {
         final float[] stages = new float[] { bot, 1 + top, 1 };
 
         if (choices.length > 0 && floats.length > 0) {
-            int[] durations = new int[choices.length];
-            int[] velocities = new int[choices.length];
-            int[] accents = new int[choices.length];
+            int[] durations = new int[floats.length + 1];
+            durations[0] = 1;
+            int[] velocities = new int[floats.length + 1];
+            velocities[0] = 1;
+            int[] accents = new int[floats.length];
 
             for (int i = 0; i < floats.length; i++) {
                 int j;
-                float f = floats[i] * nextFloatDown;
+                float f = Math.nextDown(floats[i]);
                 for (j = 0; j < stages.length; j++) {
                     if (f < stages[j]) {
                         break;
                     }
                 }
-
                 String choice = choices[j];
 
-                velocities[i] = choice.contains("R") ? 0 : choice.contains("A") ? 127 : 63;
+                velocities[i + 1] = choice.contains("R") ? 0 : choice.contains("A") ? 127 : 63;
                 accents[i] = choice.contains("A") ? 1 : 0;
-                durations[i] = choice.contains("T") ? 120 : 60;
+                durations[i + 1] = choice.contains("T") ? 120 : 60;
             }
 
-            outlet(0, "duration 1", durations);
-            outlet(0, "velocity 1", velocities);
+            outlet(0, "duration", durations);
+            outlet(0, "velocity", velocities);
             outlet(1, accents);
         }
     }

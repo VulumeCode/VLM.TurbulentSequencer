@@ -11,7 +11,9 @@
  * @author this package must also be.
  */
 public class Factorize {
-
+  Factorize() {
+    // dummy
+  }
   /**
    * Return the prime factors of n. The method first extracts any factors in
    * fromfactors, in order (which needn't actually be prime). Remaining factors in
