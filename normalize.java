@@ -31,7 +31,7 @@ public class normalize extends MaxObject {
         float[] output = new float[input.length];
 
         for (int i = 0; i < output.length; i++) {
-            output[i] = (((input[i] - avg) / deviation) + 1) / 2;
+            output[i] = (((input[i] - avg) / deviation) + 1.f) / 2.f;
         }
 
         outlet(0, output);

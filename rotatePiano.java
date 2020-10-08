@@ -2,7 +2,7 @@ import com.cycling74.max.*;
 
 public class rotatePiano extends MaxObject {
 
-    int[] noteToggles = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    int[] noteToggles = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
     Atom[] noteView = Atom.newAtom(new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 });
     Atom[] noteViewPrev = Atom.newAtom(new int[] { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 });
@@ -12,7 +12,7 @@ public class rotatePiano extends MaxObject {
 
     rotatePiano() {
         declareInlets(new int[] { DataTypes.LIST, DataTypes.INT, DataTypes.LIST });
-        declareOutlets(new int[] { DataTypes.LIST, DataTypes.LIST });
+        declareOutlets(new int[] { DataTypes.LIST, DataTypes.LIST, DataTypes.LIST });
     }
 
     protected void inlet(int v) {
@@ -27,7 +27,7 @@ public class rotatePiano extends MaxObject {
     }
 
     private boolean arrayEquals(int[] a, int[] b) {
-        if (a.length != b.length) {
+        if (a == null || b == null || a.length != b.length) {
             return false;
         }
         for (int i = 0; i < a.length; i++) {
@@ -45,6 +45,8 @@ public class rotatePiano extends MaxObject {
                 int[] input = Atom.toInt(a);
                 int i = (input[0] + steps) % viewLength;
                 int v = (input[1] == 0 ? 1 : 0);
+
+                noteViewPrev[input[0]] = Atom.newAtom(v);
                 if (noteToggles[i] == v) {
                     return;
                 } else {
@@ -54,7 +56,7 @@ public class rotatePiano extends MaxObject {
                     outlet(1, noteView);
                 }
                 break;
-            case 1:
+            case 2:
                 int[] updatedValues = Atom.toInt(a);
                 if (arrayEquals(noteToggles, updatedValues)) {
                     return;
@@ -72,6 +74,7 @@ public class rotatePiano extends MaxObject {
 
     private void setPiano() {
         calcView();
+
         for (int i = 0; i < noteView.length; i++) {
             if (!noteView[i].equals(noteViewPrev[i])) {
                 outlet(0, new String[] { "set", Integer.toString(i), noteView[i].toBoolean() ? "0" : "1" });

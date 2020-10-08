@@ -21,7 +21,7 @@ public class shiftSlider extends MaxObject {
     }
 
     private boolean arrayEquals(Atom[] a, Atom[] b) {
-        if (a.length != b.length) {
+        if (a == null || b == null || a.length != b.length) {
             return false;
         }
         for (int i = 0; i < a.length; i++) {
@@ -38,7 +38,6 @@ public class shiftSlider extends MaxObject {
             case 0:
                 System.arraycopy(a, 0, values, viewLength + steps, viewLength);
                 outlet(1, values);
-                // outlet(0, "setlist", view);
                 break;
             case 2:
                 if (arrayEquals(a, values)) {

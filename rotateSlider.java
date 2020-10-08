@@ -12,7 +12,7 @@ public class rotateSlider extends MaxObject {
     }
 
     private boolean arrayEquals(Atom[] a, Atom[] b) {
-        if (a.length != b.length) {
+        if (a == null || b == null || a.length != b.length) {
             return false;
         }
         for (int i = 0; i < a.length; i++) {
@@ -27,12 +27,6 @@ public class rotateSlider extends MaxObject {
         int idx = getInlet();
         switch (idx) {
             case 0:
-                // float[] input = Atom.toFloat(a);
-
-                // values = new float[a.length];
-                // System.arraycopy(input,a.length-steps,values,0,steps);
-                // System.arraycopy(input, 0, values, a.length - steps, a.length - steps);
-
                 values = Atom.rotate(a, steps);
                 outlet(1, values);
                 break;

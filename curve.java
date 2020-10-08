@@ -14,7 +14,7 @@ public class curve extends MaxObject {
         final int idx = getInlet();
         switch (idx) {
             case 0:
-                beta = v;
+                beta = v == 10.f ? 100.f : v;
                 break;
             case 1:
                 center = v * len;
@@ -26,9 +26,6 @@ public class curve extends MaxObject {
     protected void inlet(int v) {
         final int idx = getInlet();
         switch (idx) {
-            case 0:
-                beta = v;
-                break;
             case 1:
                 center = v;
                 break;
