@@ -39,7 +39,7 @@ public class rotary extends MaxObject {
                 break;
         }
 
-        if (in >= to || in <= from) {
+        if (in > to || in < from) {
             in = wrap();
             outlet(0, "set", (int) in);
         }
@@ -59,7 +59,7 @@ public class rotary extends MaxObject {
                 to = v;
                 break;
         }
-        if (in >= to || in <= from) {
+        if (in > to || in < from) {
             in = wrap();
             outlet(0, "set", (float) in);
         }
