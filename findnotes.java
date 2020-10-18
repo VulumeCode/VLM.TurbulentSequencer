@@ -3,8 +3,9 @@ import com.cycling74.max.*;
 
 public class findnotes extends MaxObject {
     float[] probs = new float[0];
-    float[] floats = new float[0];
+    Atom[] atoms = new Atom[0];
     int[] notes = new int[0];
+    int nudge = 0;
 
     findnotes() {
         declareInlets(new int[] { DataTypes.LIST, DataTypes.LIST });
@@ -15,17 +16,23 @@ public class findnotes extends MaxObject {
         final int idx = getInlet();
         switch (idx) {
             case 0:
-                floats = Atom.toFloat(Atom.reverse(a));
+                atoms = Atom.reverse(a);
                 break;
             case 1:
                 probs = Atom.toFloat(a);
                 break;
         }
-        calc();
         bang();
     }
 
-    private void calc() {
+    public void setNudge(int n) {
+        nudge = n;
+        bang();
+    }
+
+    protected void bang() {
+        final float[] floats = Atom.toFloat(Atom.rotate(atoms, -nudge));
+
         final LinkedList<Integer> noteList = new LinkedList<Integer>();
         for (int i = 0; i < floats.length; i++) {
             float v = floats[i];
@@ -40,9 +47,7 @@ public class findnotes extends MaxObject {
         for (int i = 0; i < notes.length; i++) {
             notes[i] = noteList.get(i);
         }
-    }
 
-    protected void bang() {
         outlet(0, notes);
     }
 }
