@@ -1,10 +1,9 @@
 import com.cycling74.max.*;
 
 public class findTiesAndAccents extends MaxObject {
-
     Atom[] atoms = new Atom[0];
     String[] choices = new String[0];
-    float bot, top;
+    float bot = 0, top = 0;
     int nudge = 0;
 
     findTiesAndAccents() {
@@ -43,11 +42,10 @@ public class findTiesAndAccents extends MaxObject {
     }
 
     protected void bang() {
-        final float[] stages = new float[] { bot, 1 + top, 1 };
+        if (choices != null && choices.length > 0 && atoms != null && atoms.length > 0) {
+            final float[] stages = new float[] { bot, 1 + top, 1 };
+            final float[] floats = Atom.toFloat(Atom.rotate(atoms, nudge));
 
-        final float[] floats = Atom.toFloat(Atom.rotate(atoms, nudge));
-
-        if (choices.length > 0 && floats.length > 0) {
             int[] durations = new int[floats.length + 1];
             durations[0] = 1;
             int[] velocities = new int[floats.length + 1];
@@ -62,6 +60,7 @@ public class findTiesAndAccents extends MaxObject {
                         break;
                     }
                 }
+
                 String choice = choices[j];
 
                 velocities[i + 1] = choice.contains("R") ? 0 : choice.contains("A") ? 127 : 63;

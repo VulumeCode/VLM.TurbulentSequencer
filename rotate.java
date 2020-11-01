@@ -60,19 +60,20 @@ public class rotate extends MaxObject {
     }
 
     protected void bang() {
-        int len = seqReal.length;
-        float[] outSeqReal = new float[len];
-        float[] outSeqImg = new float[len];
-
-        for (int i = 0; i < len; i++) {
-            CarToPol pol = new CarToPol(seqReal[i], seqImg[i]);
-            PolToCar car = new PolToCar(pol.t - angle, pol.r);
-            outSeqReal[i] = car.x;
-            outSeqImg[i] = car.y;
+        if (seqReal != null && seqReal.length > 0 && seqImg != null && seqImg.length > 0) {
+            int len = seqReal.length;
+            float[] outSeqReal = new float[len];
+            float[] outSeqImg = new float[len];
+    
+            for (int i = 0; i < len; i++) {
+                CarToPol pol = new CarToPol(seqReal[i], seqImg[i]);
+                PolToCar car = new PolToCar(pol.t - angle, pol.r);
+                outSeqReal[i] = car.x;
+                outSeqImg[i] = car.y;
+            }
+    
+            outlet(1, outSeqImg);
+            outlet(0, outSeqReal);
         }
-
-        outlet(1, outSeqImg);
-        outlet(0, outSeqReal);
     }
-
 }

@@ -1,9 +1,9 @@
 import com.cycling74.max.*;
 
 public class fftfilter extends MaxObject {
-    float[] seqReal = new float[] { 0, 0 };
-    float[] seqImg = new float[] { 0, 0 };
-    float[] curve = new float[] { 0, 0 };
+    float[] seqReal = new float[0];
+    float[] seqImg = new float[0];
+    float[] curve = new float[0];
 
     ComplexFloatFFT_Mixed fft;
 

@@ -31,23 +31,24 @@ public class findnotes extends MaxObject {
     }
 
     protected void bang() {
-        final float[] floats = Atom.toFloat(Atom.rotate(atoms, -nudge));
+        if (atoms.length > 0) {
+            final float[] floats = Atom.toFloat(Atom.rotate(atoms, -nudge));
 
-        final LinkedList<Integer> noteList = new LinkedList<Integer>();
-        for (int i = 0; i < floats.length; i++) {
-            float v = floats[i];
-            for (int j = 0; j < probs.length; j++) {
-                if ((v < 1.) ? (v < probs[j]) : (v == probs[j])) {
-                    noteList.push(j);
-                    break;
+            final LinkedList<Integer> noteList = new LinkedList<Integer>();
+            for (int i = 0; i < floats.length; i++) {
+                float v = floats[i];
+                for (int j = 0; j < probs.length; j++) {
+                    if ((v < 1.) ? (v < probs[j]) : (v == probs[j])) {
+                        noteList.push(j);
+                        break;
+                    }
                 }
             }
+            notes = new int[noteList.size()];
+            for (int i = 0; i < notes.length; i++) {
+                notes[i] = noteList.get(i);
+            }
+            outlet(0, notes);
         }
-        notes = new int[noteList.size()];
-        for (int i = 0; i < notes.length; i++) {
-            notes[i] = noteList.get(i);
-        }
-
-        outlet(0, notes);
     }
 }
