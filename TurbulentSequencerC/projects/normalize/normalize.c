@@ -46,7 +46,7 @@ void *normalize_new(long dummy)		// dummy = int argument typed into object box (
 	x = object_alloc(normalize_class);
 	x->i_ac = 0;
 	x->input = NULL;
-	outlet_new(x, NULL);
+	listout(x);
 	return x;
 }
 
@@ -95,9 +95,7 @@ void normalize_bang(t_normalize *x)
 			(((x->input[i] - avg) / deviation) + 1) / 2
 		);
 	}
-
 	outlet_list(x->i_ob.o_outlet, NULL, length, output);
-
 	sysmem_freeptr(output);
 }
 
@@ -106,13 +104,12 @@ void normalize_list(t_normalize* x, t_symbol* s, short ac, t_atom* av)
 	short i;
 
 	normalize_resize(x, ac);
-
 	for (i = 0; i < ac; i++, av++) {
 		if (atom_gettype(av) == A_FLOAT) {
 			x->input[i] = atom_getfloat(av);
 		}
 		else {
-			object_error(NULL, "Not a float");
+			object_error(&x->i_ob, "Not a float");
 		}
 	}
 	x->i_ac = ac;
