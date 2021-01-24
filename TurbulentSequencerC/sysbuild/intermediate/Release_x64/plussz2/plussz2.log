@@ -1,0 +1,9 @@
+﻿  dllmain_win.c
+  plussz2.c
+C:\Users\Vincent\Documents\Max 8\Max for Live Devices\VLM.Turbulent Sequencer Code\TurbulentSequencerC\projects\plussz2\plussz2.c(106,50): warning C4244: '=': conversion from 't_atom_long' to 'long', possible loss of data
+C:\Users\Vincent\Documents\Max 8\Max for Live Devices\VLM.Turbulent Sequencer Code\TurbulentSequencerC\projects\plussz2\plussz2.c(110,52): warning C4244: '=': conversion from 't_atom_float' to 'float', possible loss of data
+     Creating library ..\..\sysbuild\intermediate\Release_x64\plussz2\plussz2.lib and object ..\..\sysbuild\intermediate\Release_x64\plussz2\plussz2.exp
+  Generating code
+  Not all modules are compiled with -Gy (function comdat), build without incremental LTCG.
+  Finished generating code
+  plussz2.vcxproj -> C:\Users\Vincent\Documents\Max 8\Max for Live Devices\VLM.Turbulent Sequencer Code\externals\plussz2.mxe64
