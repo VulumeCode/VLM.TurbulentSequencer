@@ -1,0 +1,6 @@
+﻿cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  normalize.c
+  dllmain_win.c
+  Generating Code...
+     Creating library ..\..\sysbuild\intermediate\Debug_x64\normalize\normalize.lib and object ..\..\sysbuild\intermediate\Debug_x64\normalize\normalize.exp
+  normalize.vcxproj -> C:\Users\Vincent\Documents\Max 8\Max for Live Devices\VLM.Turbulent Sequencer Code\externals\normalize.mxe64

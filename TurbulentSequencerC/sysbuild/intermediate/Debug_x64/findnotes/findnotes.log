@@ -1,0 +1,6 @@
+﻿cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  findnotes.c
+C:\Users\Vincent\Documents\Max 8\Max for Live Devices\VLM.Turbulent Sequencer Code\TurbulentSequencerC\projects\findnotes\findnotes.c(119,11): warning C4013: 'memcy' undefined; assuming extern returning int
+     Creating library ..\..\sysbuild\intermediate\Debug_x64\findnotes\findnotes.lib and object ..\..\sysbuild\intermediate\Debug_x64\findnotes\findnotes.exp
+findnotes.obj : error LNK2019: unresolved external symbol memcy referenced in function findnotes_bang
+C:\Users\Vincent\Documents\Max 8\Max for Live Devices\VLM.Turbulent Sequencer Code\TurbulentSequencerC\projects\findnotes\..\..\c74support\..\..\externals\findnotes.mxe64 : fatal error LNK1120: 1 unresolved externals

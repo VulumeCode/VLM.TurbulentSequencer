@@ -38,8 +38,8 @@ typedef long (*t_intmethod)(void *, ...);
 */
 typedef struct symbol
 {
-	char *s_name;			///< name: a c-string
-	struct object *s_thing;	///< possible binding to a t_object
+	char *s_name;			// name: a c-string
+	struct object *s_thing;	// possible binding to a t_object
 } t_symbol;
 C74_DEPRECATED( typedef struct symbol Symbol );
 
