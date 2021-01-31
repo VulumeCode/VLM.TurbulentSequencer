@@ -1,24 +1,26 @@
 #include "ext.h"				// you must include this - it contains the external object's link to available Max functions
 #include "ext_obex.h"			// this is required for all objects using the newer style for writing objects.
-//#include <cmath>
 
-typedef struct _monoNote {		// defines our object's internal variables for each instance in a patch
+typedef struct _curve {		// defines our object's internal variables for each instance in a patch
 	t_object i_ob;
-	long lastNote;
-	bool lastTie;
-	double velScale;
-} t_monoNote;
+	long i_in;          // space for the inlet number used by all the proxies
+
+	double beta;
+	double centerpct;
+	short len;
+
+	void* out0;
+} t_curve;
 
 // these are prototypes for the methods that are defined below
-void *monoNote_new(long dummy);
-void monoNote_free(t_monoNote *x);
-void monoNote_assist(t_monoNote *x, void *b, long m, long a, char *s);
-void monoNote_int(t_monoNote *x, long n);
-void monoNote_list(t_monoNote* x, t_symbol* s, short ac, t_atom* av);
+void *curve_new(long dummy);
+void curve_free(t_curve *x);
+void curve_assist(t_curve *x, void *b, long m, long a, char *s);
+void curve_bang(t_curve *x);
+void curve_int(t_curve *x, long n);
+void curve_float(t_curve* x, double f);
 
-void noteOut(t_monoNote* x, long note, long vel);
-
-t_class *monoNote_class;		// global pointer to the object class - so max can reference the object
+t_class *curve_class;		// global pointer to the object class - so max can reference the object
 
 //--------------------------------------------------------------------------
 
@@ -26,43 +28,46 @@ void ext_main(void *r)
 {
 	t_class *c;
 
-	c = class_new("monoNote", (method)monoNote_new, (method)monoNote_free, sizeof(t_monoNote), 0L, A_DEFLONG, 0);
+	c = class_new("curve", (method)curve_new, (method)curve_free, sizeof(t_curve), 0L, A_DEFLONG, 0);
 
-	class_addmethod(c, (method)monoNote_list, "list", A_GIMME, 0);		
-	class_addmethod(c, (method)monoNote_int, "in1", A_LONG, 0);
+	class_addmethod(c, (method)curve_float, "float", A_FLOAT, 0);		
+	class_addmethod(c, (method)curve_int, "int", A_LONG, 0);
+	class_addmethod(c, (method)curve_bang, "bang", A_LONG, 0);
 
-	class_addmethod(c, (method)monoNote_assist,	"assist",	A_CANT, 0);	
+	class_addmethod(c, (method)curve_assist,	"assist",	A_CANT, 0);	
 
 	class_register(CLASS_BOX, c);
-	monoNote_class = c;
+	curve_class = c;
 
-	object_post(NULL, "monoNote object loaded...",0);	// post any important info to the max window when our class is loaded
+	object_post(NULL, "curve object loaded...",0);	// post any important info to the max window when our class is loaded
 }
 
 //--------------------------------------------------------------------------
 
-void *monoNote_new(long dummy)		// dummy = int argument typed into object box (A_DEFLONG) -- defaults to 0 if no args are typed
+void *curve_new(long dummy)		// dummy = int argument typed into object box (A_DEFLONG) -- defaults to 0 if no args are typed
 {
-	t_monoNote* x;
+	t_curve* x;
 
-	x = object_alloc(monoNote_class);
+	x = object_alloc(curve_class);
 
-	intin(x, 1);
+	proxy_new(&x->i_ob, 2, &x->i_in);
+	proxy_new(&x->i_ob, 1, &x->i_in);
 
-	x->lastNote = -1;
-	x->lastTie = false;
-	x->velScale = 1.0;
-	listout(x);
+	x->beta  = -1;
+	x->centerpct = -1;
+	x->len =0;
+
+	x->out0 = listout(x);
 	return x;
 }
 
-void monoNote_free(t_monoNote *x)
+void curve_free(t_curve *x)
 {
 }
 
 //--------------------------------------------------------------------------
 
-void monoNote_assist(t_monoNote *x, void *b, long m, long a, char *s) // 4 final arguments are always the same for the assistance method
+void curve_assist(t_curve *x, void *b, long m, long a, char *s) // 4 final arguments are always the same for the assistance method
 {
 	if (m == ASSIST_INLET) {
 		switch (a) {
@@ -80,54 +85,80 @@ void monoNote_assist(t_monoNote *x, void *b, long m, long a, char *s) // 4 final
 }
 
 
-void monoNote_int(t_monoNote *x, long n)
+void curve_float(t_curve* x, double n)
 {
-	x->velScale = ((double)n) / (127.0);
+	switch (proxy_getinlet(&x->i_ob)) {
+	case 0:
+		x->beta = n == 10.0 ? 100.0 : n;
+		break;
+	case 1:
+		x->centerpct = n;
+		break;
+	case 2:
+		error("no float here pls");
+		break;
+	}
+	curve_bang(x);
 }
 
-void monoNote_list(t_monoNote* x, t_symbol* s, short ac, t_atom* av)
+
+
+void curve_int(t_curve *x, long n)
 {
-	long note = (long) atom_getlong(&av[1]);
-	long vel = (long) atom_getlong(&av[2]);
-	double duration = atom_getfloat(&av[2]);
-
-	boolean tie = duration == 120;
-	boolean rest = vel == 0;
-
-	long outVel = (long) (vel * x->velScale);
-
-	if (x->lastNote == -1 && !rest) {
-		noteOut(x, note, outVel);
+	switch (proxy_getinlet(&x->i_ob)) {
+	case 0:
+		error("no int here pls");
+		break;
+	case 1:
+		error("must be float");
+		break;
+	case 2:
+		x->len = (short) n;
+		break;
 	}
-	else if (x->lastTie && !rest && x->lastNote != note) {
-		noteOut(x, note, outVel);
-		noteOut(x, x->lastNote, 0);
-	}
-	else if (x->lastNote != -1 && rest) {
-		noteOut(x, x->lastNote, 0);
-	}
-	else if (x->lastNote != -1 && !x->lastTie) {
-		noteOut(x, x->lastNote, 0);
-		noteOut(x, note, outVel);
-	}
-
-	x->lastNote = rest ? -1 : note;
-	x->lastTie = tie;
+	curve_bang(x);
 }
 
+void curve_bang(t_curve* x) {
+	if (x->len > 0 && x->centerpct >= 0 && x->beta >= 0) {
+		t_atom* curve = (t_atom*)sysmem_newptr(x->len * sizeof(t_atom));
 
-void noteOut(t_monoNote* x, long note, long vel) {
-	t_atom out[2];
+		double max = 0;
 
-	atom_setlong(
-		out,
-		note
-	);
-	atom_setlong(
-		out + 1,
-		vel
-	);
+		double center = x->centerpct * x->len;
 
-	outlet_list(x->i_ob.o_outlet, NULL, 2, out);
+		int i = 1;
+		for (; i < center; i++) {
+			double e = x->len * ((center - i) / center);
+			double s = (double)(1. / pow(e, x->beta));
+			max = s > max ? s : max;
+			atom_setfloat(
+				&curve[i], s
+			);
+		}
+
+		for (; i < x->len; i++) {
+			double e = i - center + 1;
+			double s = (double)(1. / pow(e, x->beta));
+			max = s > max ? s : max;
+			atom_setfloat(
+				&curve[i], s
+			);
+		}
+
+		for (int j = 1; j < x->len; j++) {
+			atom_setfloat(
+				&curve[j], atom_getfloat(&curve[j]) / max
+			);
+		}
+
+		atom_setfloat(
+			&curve[0], 1.
+		);
+
+		outlet_list(x->out0, NULL, x->len, curve);
+		sysmem_freeptr(curve);
+	}
 }
+
 
