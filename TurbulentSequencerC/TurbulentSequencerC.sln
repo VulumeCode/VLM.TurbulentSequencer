@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "findnotes", "projects\findn
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rotateSlider", "projects\rotateSlider\rotateSlider.vcxproj", "{92C81E90-FCD0-4A6C-B120-4145A4127B18}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "curve", "projects\curve\curve.vcxproj", "{9FD93D95-5339-40CF-9C15-0829E9A97840}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{92C81E90-FCD0-4A6C-B120-4145A4127B18}.Release|x64.Build.0 = Release|x64
 		{92C81E90-FCD0-4A6C-B120-4145A4127B18}.Release|x86.ActiveCfg = Release|Win32
 		{92C81E90-FCD0-4A6C-B120-4145A4127B18}.Release|x86.Build.0 = Release|Win32
+		{9FD93D95-5339-40CF-9C15-0829E9A97840}.Debug|x64.ActiveCfg = Debug|x64
+		{9FD93D95-5339-40CF-9C15-0829E9A97840}.Debug|x64.Build.0 = Debug|x64
+		{9FD93D95-5339-40CF-9C15-0829E9A97840}.Debug|x86.ActiveCfg = Debug|Win32
+		{9FD93D95-5339-40CF-9C15-0829E9A97840}.Debug|x86.Build.0 = Debug|Win32
+		{9FD93D95-5339-40CF-9C15-0829E9A97840}.Release|x64.ActiveCfg = Release|x64
+		{9FD93D95-5339-40CF-9C15-0829E9A97840}.Release|x64.Build.0 = Release|x64
+		{9FD93D95-5339-40CF-9C15-0829E9A97840}.Release|x86.ActiveCfg = Release|Win32
+		{9FD93D95-5339-40CF-9C15-0829E9A97840}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
