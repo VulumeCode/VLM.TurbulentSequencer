@@ -2,7 +2,7 @@
 #include "ext_obex.h"			// this is required for all objects using the newer style for writing objects.
 
 #define viewLength 10
-#define valuesLength 30
+#define valuesLength viewLength*3
 
 typedef struct _shiftSlider {		// defines our object's internal variables for each instance in a patch
 	t_object i_ob;
@@ -164,7 +164,8 @@ void shiftSlider_update(t_shiftSlider* x, t_symbol* s, short ac, t_atom* av)
 		return;
 	}
 	else {
-		*(x->values) = *input;
+		memcpy(x->values, input, valuesLength * sizeof(double));
+
 		shiftSlider_outputView(x);
 	}
 }
