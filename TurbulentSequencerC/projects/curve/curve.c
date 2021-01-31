@@ -4,6 +4,8 @@
 typedef struct _curve {		// defines our object's internal variables for each instance in a patch
 	t_object i_ob;
 	long i_in;          // space for the inlet number used by all the proxies
+	void* proxy2;
+	void* proxy1;
 
 	double beta;
 	double centerpct;
@@ -50,8 +52,8 @@ void *curve_new(long dummy)		// dummy = int argument typed into object box (A_DE
 
 	x = object_alloc(curve_class);
 
-	proxy_new(&x->i_ob, 2, &x->i_in);
-	proxy_new(&x->i_ob, 1, &x->i_in);
+	x->proxy2 = proxy_new(&x->i_ob, 2, &x->i_in);
+	x->proxy1 = proxy_new(&x->i_ob, 1, &x->i_in);
 
 	x->beta  = -1;
 	x->centerpct = -1;
@@ -63,6 +65,8 @@ void *curve_new(long dummy)		// dummy = int argument typed into object box (A_DE
 
 void curve_free(t_curve *x)
 {
+	freeobject((t_object*)x->proxy1);
+	freeobject((t_object*)x->proxy2);
 }
 
 //--------------------------------------------------------------------------

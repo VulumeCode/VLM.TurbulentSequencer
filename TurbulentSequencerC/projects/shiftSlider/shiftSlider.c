@@ -7,7 +7,8 @@
 typedef struct _shiftSlider {		// defines our object's internal variables for each instance in a patch
 	t_object i_ob;
 	long i_in;          // space for the inlet number used by all the proxies
-	void* i_proxy;
+	void* proxy2;
+	void* proxy1;
 
 	double values[valuesLength];
 
@@ -56,14 +57,13 @@ void *shiftSlider_new(long dummy)		// dummy = int argument typed into object box
 
 	x = object_alloc(shiftSlider_class);
 
-	proxy_new(&x->i_ob, 2, &x->i_in);
-	proxy_new(&x->i_ob, 1, &x->i_in);
+	x->proxy2 = proxy_new(&x->i_ob, 2, &x->i_in);
+	x->proxy1 = proxy_new(&x->i_ob, 1, &x->i_in);
 
 	x->steps = 0;
 
 	x->out1 = listout(x);
 	x->out0 = listout(x);
-
 
 	// initialize with zeroes
 	for (int i = 0; i < valuesLength; i++) {
@@ -77,6 +77,9 @@ void shiftSlider_free(t_shiftSlider *x)
 {
 	if (x->values)
 		sysmem_freeptr(x->values);
+
+	freeobject((t_object*)x->proxy1);
+	freeobject((t_object*)x->proxy2);
 }
 
 //--------------------------------------------------------------------------

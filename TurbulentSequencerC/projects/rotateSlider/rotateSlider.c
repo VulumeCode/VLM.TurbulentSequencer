@@ -73,6 +73,8 @@ void rotateSlider_free(t_rotateSlider *x)
 {
 	if (x->values)
 		sysmem_freeptr(x->values);
+
+	freeobject((t_object*)x->i_proxy);
 }
 
 //--------------------------------------------------------------------------
