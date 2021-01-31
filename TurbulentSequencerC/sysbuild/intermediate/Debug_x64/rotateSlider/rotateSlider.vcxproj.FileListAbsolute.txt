@@ -1,0 +1,2 @@
+C:\Users\Vincent\Documents\Max 8\Max for Live Devices\VLM.Turbulent Sequencer Code\externals\rotateSlider.pdb
+C:\Users\Vincent\Documents\Max 8\Max for Live Devices\VLM.Turbulent Sequencer Code\TurbulentSequencerC\sysbuild\intermediate\Debug_x64\rotateSlider\rotateSlider.pdb
