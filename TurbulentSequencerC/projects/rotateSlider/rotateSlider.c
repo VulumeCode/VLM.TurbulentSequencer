@@ -58,14 +58,14 @@ void *rotateSlider_new(long dummy)		// dummy = int argument typed into object bo
 
 	x = object_alloc(rotateSlider_class);
 
+	x->i_proxy = proxy_new(&x->i_ob, 2, &x->i_in);
 	intin(x, 1);
-	x->i_proxy = proxy_new((t_object*)x, 2, &x->i_in);
 
 	x->viewLength = 12;
 	x->steps = 0;
 
-	x->out0 = listout(x);
 	x->out1 = listout(x);
+	x->out0 = listout(x);
 	return x;
 }
 
@@ -105,7 +105,7 @@ void rotateSlider_assist(t_rotateSlider* x, void* b, long m, long a, char* s) //
 }
 
 void rotateSlider_setSteps(t_rotateSlider* x, long steps) {
-	x->steps = (-steps + x->viewLength) + x->viewLength;
+	x->steps = (-steps + x->viewLength) % x->viewLength;
 	rotateSlider_outputView(x);
 }
 
@@ -113,7 +113,7 @@ void rotateSlider_outputView(t_rotateSlider *x)
 {
 	if (x->values != NULL) {
 		short length = x->values_ac;
-		short steps = (-(x->steps) + length) % length;
+		short steps = ((x->steps) + length) % length;
 		t_atom* output = (t_atom*)sysmem_newptr(length * sizeof(t_atom));
 		short to_i = 0;
 		for (short i = steps; i < length; i++, to_i++) {
@@ -133,7 +133,7 @@ void rotateSlider_outputView(t_rotateSlider *x)
 }
 
 void rotateSlider_list(t_rotateSlider* x, t_symbol* s, short ac, t_atom* av) {
-	switch (proxy_getinlet((t_object*)x)) {
+	switch (proxy_getinlet(&x->i_ob)) {
 	case 0:
 		rotateSlider_rotate(x, s, ac, av);
 		break;
@@ -152,7 +152,7 @@ void rotateSlider_rotate(t_rotateSlider* x, t_symbol* s, short ac, t_atom* av)
 	rotateSlider_resize_values(x, ac);
 
 	short length = x->values_ac;
-	short steps = ((x->steps) + length) % length;
+	short steps = ((-(x->steps)) + length) % length;
 	short to_i = 0;
 	for (short i = steps; i < length; i++, to_i++) {
 		x->values[to_i] = atom_getfloat(av + i);
@@ -204,7 +204,9 @@ bool arrayEquals(short ac, t_atom_float* av, short bc, t_atom_float* bv)
 		return false;
 	}
 	for (int i = 0; i < ac; i++) {
-		if (av[i] != bv[i]) {
+		double av_i = av[i];
+		double bv_i = bv[i];
+		if (av_i != bv_i) {
 			return false;
 		}
 	}
