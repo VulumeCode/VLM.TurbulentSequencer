@@ -1,6 +1,5 @@
 #include "ext.h"				// you must include this - it contains the external object's link to available Max functions
 #include "ext_obex.h"			// this is required for all objects using the newer style for writing objects.
-//#include <cmath>
 
 typedef struct _monoNote {		// defines our object's internal variables for each instance in a patch
 	t_object i_ob;
