@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "curve", "projects\curve\cur
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shiftSlider", "projects\shiftSlider\shiftSlider.vcxproj", "{13613049-3C7F-4705-866F-28824C4CA6C8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "calcprobs", "projects\calcprobs\calcprobs.vcxproj", "{7D8922DD-BE15-4A0B-95E0-B7F06338DF9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -71,6 +73,14 @@ Global
 		{13613049-3C7F-4705-866F-28824C4CA6C8}.Release|x64.Build.0 = Release|x64
 		{13613049-3C7F-4705-866F-28824C4CA6C8}.Release|x86.ActiveCfg = Release|Win32
 		{13613049-3C7F-4705-866F-28824C4CA6C8}.Release|x86.Build.0 = Release|Win32
+		{7D8922DD-BE15-4A0B-95E0-B7F06338DF9E}.Debug|x64.ActiveCfg = Debug|x64
+		{7D8922DD-BE15-4A0B-95E0-B7F06338DF9E}.Debug|x64.Build.0 = Debug|x64
+		{7D8922DD-BE15-4A0B-95E0-B7F06338DF9E}.Debug|x86.ActiveCfg = Debug|Win32
+		{7D8922DD-BE15-4A0B-95E0-B7F06338DF9E}.Debug|x86.Build.0 = Debug|Win32
+		{7D8922DD-BE15-4A0B-95E0-B7F06338DF9E}.Release|x64.ActiveCfg = Release|x64
+		{7D8922DD-BE15-4A0B-95E0-B7F06338DF9E}.Release|x64.Build.0 = Release|x64
+		{7D8922DD-BE15-4A0B-95E0-B7F06338DF9E}.Release|x86.ActiveCfg = Release|Win32
+		{7D8922DD-BE15-4A0B-95E0-B7F06338DF9E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

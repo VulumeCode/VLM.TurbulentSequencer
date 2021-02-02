@@ -98,8 +98,7 @@ void findnotes_setNudge(t_findnotes* x, long nudge) {
 void findnotes_bang(t_findnotes *x)
 {
 	if (x->atoms_ac > 0) {
-		t_linklist* floats = linklist_new();
-		linklist_flags(floats, OBJ_FLAG_MEMORY);
+		t_linklist* floats = linklist_new(); linklist_flags(floats, OBJ_FLAG_MEMORY);
 		for (int i = 0; i < x->atoms_ac; i++) {
 			t_atom_float* a = (t_atom_float*)sysmem_newptr(sizeof(t_atom_float));
 			memcpy(a, x->atoms + i, sizeof(t_atom_float));
@@ -108,8 +107,7 @@ void findnotes_bang(t_findnotes *x)
 		linklist_reverse(floats);
 		linklist_rotate(floats, (x->nudge));
 
-		t_linklist* noteList = linklist_new();
-		linklist_flags(noteList, OBJ_FLAG_MEMORY);
+		t_linklist* noteList = linklist_new(); linklist_flags(noteList, OBJ_FLAG_MEMORY);
 
 		for (int i = 0; i < linklist_getsize(floats); i++) {
 			t_atom_float v = *(t_atom_float*)linklist_getindex(floats, i);
