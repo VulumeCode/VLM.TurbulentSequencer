@@ -126,8 +126,8 @@ void rotate_bang(t_rotate* obj) {
 		outlet_list(obj->out1, NULL, len, outSeqImg);
 		outlet_list(obj->out0, NULL, len, outSeqReal);
 
-		object_free(outSeqReal);
-		object_free(outSeqImg);
+		sysmem_freeptr(outSeqReal);
+		sysmem_freeptr(outSeqImg);
 	}
 }
 

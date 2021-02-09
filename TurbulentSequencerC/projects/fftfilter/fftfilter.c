@@ -196,12 +196,12 @@ void fftfilter_bang(t_fftfilter* x) {
 		outlet_list(x->out1, NULL, len, outSeqImg);
 		outlet_list(x->out0, NULL, len, outSeqReal);
 
-		object_free(outSeqFreqReal);
-		object_free(outSeqFreqImg);
-		object_free(outSeqReal);
-		object_free(outSeqImg);
-		object_free(output);
-		object_free(input);
+		sysmem_freeptr(outSeqFreqReal);
+		sysmem_freeptr(outSeqFreqImg);
+		sysmem_freeptr(outSeqReal);
+		sysmem_freeptr(outSeqImg);
+		sysmem_freeptr(output);
+		sysmem_freeptr(input);
 	}
 }
 
