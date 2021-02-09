@@ -77,7 +77,9 @@ public class rotatePiano extends MaxObject {
 
         for (int i = 0; i < noteView.length; i++) {
             if (!noteView[i].equals(noteViewPrev[i])) {
-                outlet(0, new String[] { "set", Integer.toString(i), noteView[i].toBoolean() ? "0" : "1" });
+                outlet(0, new String[] { "set", 
+                    Integer.toString(i),
+                    noteView[i].toBoolean() ? "0" : "1" });
             }
         }
         noteViewPrev = noteView;
