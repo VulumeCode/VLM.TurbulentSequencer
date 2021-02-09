@@ -17,7 +17,7 @@ typedef struct _rotate {		// defines our object's internal variables for each in
 } t_rotate;
 
 // these are prototypes for the methods that are defined below
-void* rotate_new(long dummy);
+void* rotate_new();
 void rotate_free(t_rotate* x);
 void rotate_assist(t_rotate* x, void* b, long m, long a, char* s);
 void rotate_list(t_rotate* x, t_symbol* s, short ac, t_atom* av);
@@ -32,7 +32,7 @@ void ext_main(void* r)
 {
 	t_class* c;
 
-	c = class_new("rotate", (method)rotate_new, (method)rotate_free, sizeof(t_rotate), 0L, A_DEFLONG, 0);
+	c = class_new("rotate", (method)rotate_new, (method)rotate_free, sizeof(t_rotate), 0L, 0);
 
 	class_addmethod(c, (method)rotate_list, "list", A_GIMME, 0);
 	class_addmethod(c, (method)rotate_float, "float", A_FLOAT, 0);
@@ -49,7 +49,7 @@ void ext_main(void* r)
 
 //--------------------------------------------------------------------------
 
-void* rotate_new(long dummy)		// dummy = int argument typed into object box (A_DEFLONG) -- defaults to 0 if no args are typed
+void* rotate_new()
 {
 	t_rotate* x;
 

@@ -28,7 +28,7 @@ typedef struct _randomCs {		// defines our object's internal variables for each 
 } t_randomCs;
 
 // these are prototypes for the methods that are defined below
-void *randomCs_new(long dummy);
+void *randomCs_new();
 void randomCs_free(t_randomCs *x);
 void randomCs_assist(t_randomCs *x, void *b, long m, long a, char *s);
 void randomCs_int(t_randomCs* x, long d);
@@ -44,7 +44,7 @@ void ext_main(void *r)
 {
 	t_class *c;
 
-	c = class_new("randomCs", (method)randomCs_new, (method)randomCs_free, sizeof(t_randomCs), 0L, A_DEFLONG, 0);
+	c = class_new("randomCs", (method)randomCs_new, (method)randomCs_free, sizeof(t_randomCs), 0L, 0);
 
 	class_addmethod(c, (method)randomCs_int, "int", A_LONG, 0);
 	class_addmethod(c, (method)randomCs_bang, "bang", A_LONG, 0);
@@ -67,7 +67,7 @@ bool randomCs_contains(short value, short a[], int n)
 }
 
 
-void *randomCs_new(long dummy)		// dummy = int argument typed into object box (A_DEFLONG) -- defaults to 0 if no args are typed
+void *randomCs_new()
 {
 	t_randomCs* x;
 

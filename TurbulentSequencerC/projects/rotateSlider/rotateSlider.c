@@ -6,7 +6,7 @@ typedef struct _rotateSlider {		// defines our object's internal variables for e
 	long i_in;          // space for the inlet number used by all the proxies
 	void* i_proxy;
 
-	t_atom_float* values;
+	double* values;
 	short values_ac;
 
 	short viewLength;
@@ -18,7 +18,7 @@ typedef struct _rotateSlider {		// defines our object's internal variables for e
 } t_rotateSlider;
 
 // these are prototypes for the methods that are defined below
-void *rotateSlider_new(long dummy);
+void *rotateSlider_new();
 void rotateSlider_free(t_rotateSlider *x);
 void rotateSlider_assist(t_rotateSlider *x, void *b, long m, long a, char *s);
 void rotateSlider_setSteps(t_rotateSlider* x, long steps);
@@ -27,7 +27,7 @@ void rotateSlider_list(t_rotateSlider* x, t_symbol* s, short ac, t_atom* av);
 void rotateSlider_rotate(t_rotateSlider* x, t_symbol* s, short ac, t_atom* av);
 void rotateSlider_update(t_rotateSlider* x, t_symbol* s, short ac, t_atom* av);
 void rotateSlider_resize_values(t_rotateSlider* x, short size);
-bool arrayEquals(short ac, t_atom_float* av, short bc, t_atom_float* bv);
+bool arrayEquals(short ac, double* av, short bc, double* bv);
 
 t_class *rotateSlider_class;		// global pointer to the object class - so max can reference the object
 
@@ -37,7 +37,7 @@ void ext_main(void *r)
 {
 	t_class *c;
 
-	c = class_new("rotateSlider", (method)rotateSlider_new, (method)rotateSlider_free, sizeof(t_rotateSlider), 0L, A_DEFLONG, 0);
+	c = class_new("rotateSlider", (method)rotateSlider_new, (method)rotateSlider_free, sizeof(t_rotateSlider), 0L, 0);
 
 	class_addmethod(c, (method)rotateSlider_list, "list", A_GIMME, 0);
 	class_addmethod(c, (method)rotateSlider_setSteps, "in1", A_LONG, 0);
@@ -52,7 +52,7 @@ void ext_main(void *r)
 
 //--------------------------------------------------------------------------
 
-void *rotateSlider_new(long dummy)		// dummy = int argument typed into object box (A_DEFLONG) -- defaults to 0 if no args are typed
+void *rotateSlider_new()
 {
 	t_rotateSlider* x;
 
@@ -176,7 +176,7 @@ void rotateSlider_resize_values(t_rotateSlider* x, short size)
 		if (x->values)
 			sysmem_freeptr(x->values);
 		if (size)
-			x->values = (t_atom_float*)sysmem_newptr(size * sizeof(t_atom_float));
+			x->values = (double*)sysmem_newptr(size * sizeof(double));
 		else
 			x->values = NULL;
 		x->values_ac = size;
@@ -188,7 +188,7 @@ void rotateSlider_resize_values(t_rotateSlider* x, short size)
 
 void rotateSlider_update(t_rotateSlider* x, t_symbol* s, short ac, t_atom* av)
 {
-	t_atom_float* input = (t_atom_float*)sysmem_newptr(ac * sizeof(t_atom_float));
+	double* input = (double*)sysmem_newptr(ac * sizeof(double));
 	atom_getdouble_array(ac, av, ac, input);
 
 	if (arrayEquals(ac, input, x->values_ac, x->values)) {
@@ -200,7 +200,7 @@ void rotateSlider_update(t_rotateSlider* x, t_symbol* s, short ac, t_atom* av)
 		rotateSlider_outputView(x);
 	}
 }
-bool arrayEquals(short ac, t_atom_float* av, short bc, t_atom_float* bv)
+bool arrayEquals(short ac, double* av, short bc, double* bv)
 {
 	if (av == NULL|| bv == NULL|| ac != bc) {
 		return false;

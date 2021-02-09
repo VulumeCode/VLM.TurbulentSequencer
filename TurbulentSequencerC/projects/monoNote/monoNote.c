@@ -9,7 +9,7 @@ typedef struct _monoNote {		// defines our object's internal variables for each 
 } t_monoNote;
 
 // these are prototypes for the methods that are defined below
-void *monoNote_new(long dummy);
+void *monoNote_new();
 void monoNote_free(t_monoNote *x);
 void monoNote_assist(t_monoNote *x, void *b, long m, long a, char *s);
 void monoNote_int(t_monoNote *x, long n);
@@ -25,7 +25,7 @@ void ext_main(void *r)
 {
 	t_class *c;
 
-	c = class_new("monoNote", (method)monoNote_new, (method)monoNote_free, sizeof(t_monoNote), 0L, A_DEFLONG, 0);
+	c = class_new("monoNote", (method)monoNote_new, (method)monoNote_free, sizeof(t_monoNote), 0L, 0);
 
 	class_addmethod(c, (method)monoNote_list, "list", A_GIMME, 0);		
 	class_addmethod(c, (method)monoNote_int, "in1", A_LONG, 0);
@@ -40,7 +40,7 @@ void ext_main(void *r)
 
 //--------------------------------------------------------------------------
 
-void *monoNote_new(long dummy)		// dummy = int argument typed into object box (A_DEFLONG) -- defaults to 0 if no args are typed
+void *monoNote_new()
 {
 	t_monoNote* x;
 

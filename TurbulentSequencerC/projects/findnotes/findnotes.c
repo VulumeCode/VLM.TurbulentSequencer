@@ -17,7 +17,7 @@ typedef struct _findnotes {		// defines our object's internal variables for each
 } t_findnotes;
 
 // these are prototypes for the methods that are defined below
-void *findnotes_new(long dummy);
+void *findnotes_new();
 void findnotes_free(t_findnotes *x);
 void findnotes_assist(t_findnotes *x, void *b, long m, long a, char *s);
 void findnotes_bang(t_findnotes *x);
@@ -37,7 +37,7 @@ void ext_main(void *r)
 {
 	t_class *c;
 
-	c = class_new("findnotes", (method)findnotes_new, (method)findnotes_free, sizeof(t_findnotes), 0L, A_DEFLONG, 0);
+	c = class_new("findnotes", (method)findnotes_new, (method)findnotes_free, sizeof(t_findnotes), 0L, 0);
 
 	class_addmethod(c, (method)findnotes_bang,	"bang",		0);
 	class_addmethod(c, (method)findnotes_list, "list", A_GIMME, 0);
@@ -53,7 +53,7 @@ void ext_main(void *r)
 
 //--------------------------------------------------------------------------
 
-void *findnotes_new(long dummy)		// dummy = int argument typed into object box (A_DEFLONG) -- defaults to 0 if no args are typed
+void *findnotes_new()
 {
 	t_findnotes* x;
 

@@ -46,7 +46,7 @@ void ext_main(void *r)
 
 //--------------------------------------------------------------------------
 
-void *rotary_new(t_symbol* s, short ac, t_atom* av)		// dummy = int argument typed into object box (A_DEFLONG) -- defaults to 0 if no args are typed
+void *rotary_new(t_symbol* s, short ac, t_atom* av)
 {
 	t_rotary* x;
 

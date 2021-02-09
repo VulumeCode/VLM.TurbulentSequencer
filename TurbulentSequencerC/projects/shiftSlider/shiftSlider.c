@@ -19,14 +19,14 @@ typedef struct _shiftSlider {		// defines our object's internal variables for ea
 } t_shiftSlider;
 
 // these are prototypes for the methods that are defined below
-void *shiftSlider_new(long dummy);
+void *shiftSlider_new();
 void shiftSlider_free(t_shiftSlider *x);
 void shiftSlider_assist(t_shiftSlider *x, void *b, long m, long a, char *s);
 void shiftSlider_int(t_shiftSlider* x, long steps);
 void shiftSlider_outputView(t_shiftSlider* x);
 void shiftSlider_list(t_shiftSlider* x, t_symbol* s, short ac, t_atom* av);
 void shiftSlider_update(t_shiftSlider* x, t_symbol* s, short ac, t_atom* av);
-bool arrayEquals(short ac, t_atom_float* av, short bc, t_atom_float* bv);
+bool arrayEquals(short ac, double* av, short bc, double* bv);
 
 t_class *shiftSlider_class;		// global pointer to the object class - so max can reference the object
 
@@ -36,7 +36,7 @@ void ext_main(void *r)
 {
 	t_class *c;
 
-	c = class_new("shiftSlider", (method)shiftSlider_new, (method)shiftSlider_free, sizeof(t_shiftSlider), 0L, A_DEFLONG, 0);
+	c = class_new("shiftSlider", (method)shiftSlider_new, (method)shiftSlider_free, sizeof(t_shiftSlider), 0L, 0);
 
 	class_addmethod(c, (method)shiftSlider_list, "list", A_GIMME, 0);
 	class_addmethod(c, (method)shiftSlider_int, "int", A_LONG, 0);
@@ -51,7 +51,7 @@ void ext_main(void *r)
 
 //--------------------------------------------------------------------------
 
-void *shiftSlider_new(long dummy)		// dummy = int argument typed into object box (A_DEFLONG) -- defaults to 0 if no args are typed
+void *shiftSlider_new()
 {
 	t_shiftSlider* x;
 
