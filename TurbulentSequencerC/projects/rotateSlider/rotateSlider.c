@@ -18,7 +18,7 @@ typedef struct _rotateSlider {		// defines our object's internal variables for e
 } t_rotateSlider;
 
 // these are prototypes for the methods that are defined below
-void *rotateSlider_new(void);
+void *rotateSlider_new(t_symbol* s, short ac, t_atom* av);
 void rotateSlider_free(t_rotateSlider *x);
 void rotateSlider_assist(t_rotateSlider *x, void *b, long m, long a, char *s);
 void rotateSlider_setSteps(t_rotateSlider* x, long steps);
@@ -37,7 +37,7 @@ void ext_main(void *r)
 {
 	t_class *c;
 
-	c = class_new("rotateSlider", (method)rotateSlider_new, (method)rotateSlider_free, sizeof(t_rotateSlider), 0L, 0);
+	c = class_new("rotateSlider", (method)rotateSlider_new, (method)rotateSlider_free, sizeof(t_rotateSlider), 0L, A_GIMME, 0);
 
 	class_addmethod(c, (method)rotateSlider_list, "list", A_GIMME, 0);
 	class_addmethod(c, (method)rotateSlider_setSteps, "in1", A_LONG, 0);
@@ -52,7 +52,7 @@ void ext_main(void *r)
 
 //--------------------------------------------------------------------------
 
-void *rotateSlider_new()
+void *rotateSlider_new(t_symbol* s, short ac, t_atom* av)
 {
 	t_rotateSlider* x;
 

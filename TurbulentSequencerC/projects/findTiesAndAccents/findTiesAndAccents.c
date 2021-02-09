@@ -25,7 +25,7 @@ typedef struct _findTiesAndAccents {		// defines our object's internal variables
 } t_findTiesAndAccents;
 
 // these are prototypes for the methods that are defined below
-void *findTiesAndAccents_new(void);
+void *findTiesAndAccents_new(t_symbol* s, short ac, t_atom* av);
 void findTiesAndAccents_free(t_findTiesAndAccents *x);
 void findTiesAndAccents_assist(t_findTiesAndAccents *x, void *b, long m, long a, char *s);
 void findTiesAndAccents_bang(t_findTiesAndAccents *x);
@@ -44,7 +44,7 @@ void ext_main(void *r)
 {
 	t_class *c;
 
-	c = class_new("findTiesAndAccents", (method)findTiesAndAccents_new, (method)findTiesAndAccents_free, sizeof(t_findTiesAndAccents), 0L, 0);
+	c = class_new("findTiesAndAccents", (method)findTiesAndAccents_new, (method)findTiesAndAccents_free, sizeof(t_findTiesAndAccents), 0L, A_GIMME, 0);
 
 	class_addmethod(c, (method)findTiesAndAccents_bang,	"bang",		0);
 	class_addmethod(c, (method)findTiesAndAccents_list, "list", A_GIMME, 0);
@@ -63,7 +63,7 @@ void ext_main(void *r)
 
 //--------------------------------------------------------------------------
 
-void *findTiesAndAccents_new()
+void *findTiesAndAccents_new(t_symbol* s, short ac, t_atom* av)
 {
 	t_findTiesAndAccents* x;
 

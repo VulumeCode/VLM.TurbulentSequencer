@@ -15,7 +15,7 @@ typedef struct _curve {		// defines our object's internal variables for each ins
 } t_curve;
 
 // these are prototypes for the methods that are defined below
-void *curve_new(void);
+void *curve_new(t_symbol* s, short ac, t_atom* av);
 void curve_free(t_curve *x);
 void curve_assist(t_curve *x, void *b, long m, long a, char *s);
 void curve_bang(t_curve *x);
@@ -30,7 +30,7 @@ void ext_main(void *r)
 {
 	t_class *c;
 
-	c = class_new("curve", (method)curve_new, (method)curve_free, sizeof(t_curve), 0L, 0);
+	c = class_new("curve", (method)curve_new, (method)curve_free, sizeof(t_curve), 0L, A_GIMME, 0);
 
 	class_addmethod(c, (method)curve_float, "float", A_FLOAT, 0);		
 	class_addmethod(c, (method)curve_int, "int", A_LONG, 0);
@@ -46,7 +46,7 @@ void ext_main(void *r)
 
 //--------------------------------------------------------------------------
 
-void *curve_new()
+void *curve_new(t_symbol* s, short ac, t_atom* av)
 {
 	t_curve* x;
 

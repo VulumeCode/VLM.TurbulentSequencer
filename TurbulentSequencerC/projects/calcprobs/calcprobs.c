@@ -19,7 +19,7 @@ typedef struct _calcprobs {		// defines our object's internal variables for each
 } t_calcprobs;
 
 // these are prototypes for the methods that are defined below
-void *calcprobs_new(void);
+void *calcprobs_new(t_symbol* s, short ac, t_atom* av);
 void calcprobs_free(t_calcprobs *x);
 void calcprobs_assist(t_calcprobs *x, void *b, long m, long a, char *s);
 void calcprobs_list(t_calcprobs* x, t_symbol* s, short ac, t_atom* av);
@@ -33,7 +33,7 @@ void ext_main(void *r)
 {
 	t_class *c;
 
-	c = class_new("calcprobs", (method)calcprobs_new, (method)calcprobs_free, sizeof(t_calcprobs), 0L, 0);
+	c = class_new("calcprobs", (method)calcprobs_new, (method)calcprobs_free, sizeof(t_calcprobs), 0L, A_GIMME, 0);
 
 	class_addmethod(c, (method)calcprobs_list, "list", A_GIMME, 0);
 	class_addmethod(c, (method)calcprobs_bang, "bang", A_LONG, 0);
@@ -49,7 +49,7 @@ void ext_main(void *r)
 
 //--------------------------------------------------------------------------
 
-void *calcprobs_new()
+void *calcprobs_new(t_symbol* s, short ac, t_atom* av)
 {
 	t_calcprobs* x;
 

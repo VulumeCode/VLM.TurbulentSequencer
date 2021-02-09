@@ -27,7 +27,7 @@ typedef struct _fftfilter {		// defines our object's internal variables for each
 } t_fftfilter;
 
 // these are prototypes for the methods that are defined below
-void* fftfilter_new(void);
+void* fftfilter_new(t_symbol* s, short ac, t_atom* av);
 void fftfilter_free(t_fftfilter* x);
 void fftfilter_assist(t_fftfilter* x, void* b, long m, long a, char* s);
 void fftfilter_list(t_fftfilter* x, t_symbol* s, short ac, t_atom* av);
@@ -42,7 +42,7 @@ void ext_main(void* r)
 {
 	t_class* c;
 
-	c = class_new("fftfilter", (method)fftfilter_new, (method)fftfilter_free, sizeof(t_fftfilter), 0L, 0);
+	c = class_new("fftfilter", (method)fftfilter_new, (method)fftfilter_free, sizeof(t_fftfilter), 0L, A_GIMME, 0);
 
 	class_addmethod(c, (method)fftfilter_list, "list", A_GIMME, 0);
 	class_addmethod(c, (method)fftfilter_bang, "bang", 0);
@@ -58,7 +58,7 @@ void ext_main(void* r)
 
 //--------------------------------------------------------------------------
 
-void* fftfilter_new()
+void* fftfilter_new(t_symbol* s, short ac, t_atom* av)
 {
 	t_fftfilter* x;
 

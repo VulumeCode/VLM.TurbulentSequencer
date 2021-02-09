@@ -8,7 +8,7 @@ typedef struct _normalize {		// defines our object's internal variables for each
 } t_normalize;
 
 // these are prototypes for the methods that are defined below
-void *normalize_new(void);
+void *normalize_new(t_symbol* s, short ac, t_atom* av);
 void normalize_free(t_normalize *x);
 void normalize_assist(t_normalize *x, void *b, long m, long a, char *s);
 void normalize_bang(t_normalize *x);
@@ -24,7 +24,7 @@ void ext_main(void *r)
 {
 	t_class *c;
 
-	c = class_new("normalize", (method)normalize_new, (method)normalize_free, sizeof(t_normalize), 0L, 0);
+	c = class_new("normalize", (method)normalize_new, (method)normalize_free, sizeof(t_normalize), 0L, A_GIMME, 0);
 
 	class_addmethod(c, (method)normalize_bang,	"bang",		0);				
 	class_addmethod(c, (method)normalize_list,		"list", A_GIMME, 0);		
@@ -38,7 +38,7 @@ void ext_main(void *r)
 
 //--------------------------------------------------------------------------
 
-void *normalize_new()
+void *normalize_new(t_symbol* s, short ac, t_atom* av)
 {
 	t_normalize* x;
 

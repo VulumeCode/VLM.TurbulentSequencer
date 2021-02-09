@@ -20,7 +20,7 @@ typedef struct _rotatePiano {		// defines our object's internal variables for ea
 } t_rotatePiano;
 
 // these are prototypes for the methods that are defined below
-void *rotatePiano_new(void);
+void *rotatePiano_new(t_symbol* s, short ac, t_atom* av);
 void rotatePiano_free(t_rotatePiano *x);
 void rotatePiano_assist(t_rotatePiano *x, void *b, long m, long a, char *s);
 void rotatePiano_setSteps(t_rotatePiano* x, long steps);
@@ -39,7 +39,7 @@ void ext_main(void* r)
 {
 	t_class* c;
 
-	c = class_new("rotatePiano", (method)rotatePiano_new, (method)rotatePiano_free, sizeof(t_rotatePiano), 0L, 0);
+	c = class_new("rotatePiano", (method)rotatePiano_new, (method)rotatePiano_free, sizeof(t_rotatePiano), 0L, A_GIMME, 0);
 
 	class_addmethod(c, (method)rotatePiano_list, "list", A_GIMME, 0);
 	class_addmethod(c, (method)rotatePiano_setSteps, "in1", A_LONG, 0);
@@ -54,7 +54,7 @@ void ext_main(void* r)
 
 //--------------------------------------------------------------------------
 
-void* rotatePiano_new()
+void* rotatePiano_new(t_symbol* s, short ac, t_atom* av)
 {
 	t_rotatePiano* x;
 
