@@ -19,7 +19,7 @@ typedef struct _shiftSlider {		// defines our object's internal variables for ea
 } t_shiftSlider;
 
 // these are prototypes for the methods that are defined below
-void *shiftSlider_new();
+void *shiftSlider_new(void);
 void shiftSlider_free(t_shiftSlider *x);
 void shiftSlider_assist(t_shiftSlider *x, void *b, long m, long a, char *s);
 void shiftSlider_int(t_shiftSlider* x, long steps);

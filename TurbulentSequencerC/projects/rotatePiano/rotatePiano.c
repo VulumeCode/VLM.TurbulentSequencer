@@ -20,7 +20,7 @@ typedef struct _rotatePiano {		// defines our object's internal variables for ea
 } t_rotatePiano;
 
 // these are prototypes for the methods that are defined below
-void *rotatePiano_new();
+void *rotatePiano_new(void);
 void rotatePiano_free(t_rotatePiano *x);
 void rotatePiano_assist(t_rotatePiano *x, void *b, long m, long a, char *s);
 void rotatePiano_setSteps(t_rotatePiano* x, long steps);

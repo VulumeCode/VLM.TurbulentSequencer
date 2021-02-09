@@ -28,7 +28,7 @@ typedef struct _randomCs {		// defines our object's internal variables for each 
 } t_randomCs;
 
 // these are prototypes for the methods that are defined below
-void *randomCs_new();
+void *randomCs_new(void);
 void randomCs_free(t_randomCs *x);
 void randomCs_assist(t_randomCs *x, void *b, long m, long a, char *s);
 void randomCs_int(t_randomCs* x, long d);

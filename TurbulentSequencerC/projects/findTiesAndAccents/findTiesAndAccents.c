@@ -25,7 +25,7 @@ typedef struct _findTiesAndAccents {		// defines our object's internal variables
 } t_findTiesAndAccents;
 
 // these are prototypes for the methods that are defined below
-void *findTiesAndAccents_new();
+void *findTiesAndAccents_new(void);
 void findTiesAndAccents_free(t_findTiesAndAccents *x);
 void findTiesAndAccents_assist(t_findTiesAndAccents *x, void *b, long m, long a, char *s);
 void findTiesAndAccents_bang(t_findTiesAndAccents *x);

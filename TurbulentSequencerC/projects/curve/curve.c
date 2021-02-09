@@ -15,7 +15,7 @@ typedef struct _curve {		// defines our object's internal variables for each ins
 } t_curve;
 
 // these are prototypes for the methods that are defined below
-void *curve_new();
+void *curve_new(void);
 void curve_free(t_curve *x);
 void curve_assist(t_curve *x, void *b, long m, long a, char *s);
 void curve_bang(t_curve *x);

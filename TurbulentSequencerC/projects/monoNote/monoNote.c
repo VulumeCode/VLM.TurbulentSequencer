@@ -9,7 +9,7 @@ typedef struct _monoNote {		// defines our object's internal variables for each 
 } t_monoNote;
 
 // these are prototypes for the methods that are defined below
-void *monoNote_new();
+void *monoNote_new(void);
 void monoNote_free(t_monoNote *x);
 void monoNote_assist(t_monoNote *x, void *b, long m, long a, char *s);
 void monoNote_int(t_monoNote *x, long n);

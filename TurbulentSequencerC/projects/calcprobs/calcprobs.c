@@ -19,7 +19,7 @@ typedef struct _calcprobs {		// defines our object's internal variables for each
 } t_calcprobs;
 
 // these are prototypes for the methods that are defined below
-void *calcprobs_new();
+void *calcprobs_new(void);
 void calcprobs_free(t_calcprobs *x);
 void calcprobs_assist(t_calcprobs *x, void *b, long m, long a, char *s);
 void calcprobs_list(t_calcprobs* x, t_symbol* s, short ac, t_atom* av);

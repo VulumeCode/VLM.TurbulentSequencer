@@ -8,7 +8,7 @@ typedef struct _normalize {		// defines our object's internal variables for each
 } t_normalize;
 
 // these are prototypes for the methods that are defined below
-void *normalize_new();
+void *normalize_new(void);
 void normalize_free(t_normalize *x);
 void normalize_assist(t_normalize *x, void *b, long m, long a, char *s);
 void normalize_bang(t_normalize *x);

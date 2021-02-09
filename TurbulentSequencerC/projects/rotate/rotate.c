@@ -17,7 +17,7 @@ typedef struct _rotate {		// defines our object's internal variables for each in
 } t_rotate;
 
 // these are prototypes for the methods that are defined below
-void* rotate_new();
+void* rotate_new(void);
 void rotate_free(t_rotate* x);
 void rotate_assist(t_rotate* x, void* b, long m, long a, char* s);
 void rotate_list(t_rotate* x, t_symbol* s, short ac, t_atom* av);

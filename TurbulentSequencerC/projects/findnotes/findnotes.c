@@ -17,7 +17,7 @@ typedef struct _findnotes {		// defines our object's internal variables for each
 } t_findnotes;
 
 // these are prototypes for the methods that are defined below
-void *findnotes_new();
+void *findnotes_new(void);
 void findnotes_free(t_findnotes *x);
 void findnotes_assist(t_findnotes *x, void *b, long m, long a, char *s);
 void findnotes_bang(t_findnotes *x);
