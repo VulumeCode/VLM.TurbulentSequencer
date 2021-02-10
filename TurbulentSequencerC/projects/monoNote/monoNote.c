@@ -4,7 +4,7 @@
 typedef struct _monoNote {		// defines our object's internal variables for each instance in a patch
 	t_object i_ob;
 	long lastNote;
-	bool lastTie;
+	boolean lastTie;
 	double velScale;
 } t_monoNote;
 
@@ -61,7 +61,7 @@ void monoNote_free(t_monoNote *x)
 
 //--------------------------------------------------------------------------
 
-void monoNote_assist(t_monoNote *x, void *b, long m, long a, char *s) // 4 final arguments are always the same for the assistance method
+void monoNote_assist(t_monoNote *x, void *b, long m, long a, char *s)
 {
 	if (m == ASSIST_INLET) {
 		switch (a) {
@@ -88,9 +88,9 @@ void monoNote_list(t_monoNote* x, t_symbol* s, short ac, t_atom* av)
 {
 	long note = (long) atom_getlong(&av[1]);
 	long vel = (long) atom_getlong(&av[2]);
-	double duration = atom_getfloat(&av[2]);
+	double duration = atom_getfloat(&av[3]);
 
-	boolean tie = duration == 120;
+	boolean tie  = duration == 120;
 	boolean rest = vel == 0;
 
 	long outVel = (long) (vel * x->velScale);
@@ -119,11 +119,11 @@ void noteOut(t_monoNote* x, long note, long vel) {
 	t_atom out[2];
 
 	atom_setlong(
-		out,
+		&out[0],
 		note
 	);
 	atom_setlong(
-		out + 1,
+		&out[1],
 		vel
 	);
 
