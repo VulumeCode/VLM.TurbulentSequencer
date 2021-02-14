@@ -1,0 +1,122 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		BF63943325D971FF0079D8BD /* TurbulentSequencerC */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = BF63943425D971FF0079D8BD /* Build configuration list for PBXAggregateTarget "TurbulentSequencerC" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = TurbulentSequencerC;
+			productName = TurbulentSequencerC;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXFileReference section */
+		BF63943F25D9735F0079D8BD /* projects */ = {isa = PBXFileReference; lastKnownFileType = folder; name = projects; path = ../projects; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		BF63942C25D9710A0079D8BD = {
+			isa = PBXGroup;
+			children = (
+				BF63943F25D9735F0079D8BD /* projects */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		BF63942D25D9710A0079D8BD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				KnownAssetTags = (
+					New,
+					"New-1",
+					"New-2",
+				);
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					BF63943325D971FF0079D8BD = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = BF63943025D9710A0079D8BD /* Build configuration list for PBXProject "TurbulentSequencerC" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BF63942C25D9710A0079D8BD;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BF63943325D971FF0079D8BD /* TurbulentSequencerC */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		BF63943125D9710A0079D8BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		BF63943225D9710A0079D8BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		BF63943525D971FF0079D8BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BF63943625D971FF0079D8BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BF63943025D9710A0079D8BD /* Build configuration list for PBXProject "TurbulentSequencerC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF63943125D9710A0079D8BD /* Debug */,
+				BF63943225D9710A0079D8BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF63943425D971FF0079D8BD /* Build configuration list for PBXAggregateTarget "TurbulentSequencerC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF63943525D971FF0079D8BD /* Debug */,
+				BF63943625D971FF0079D8BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BF63942D25D9710A0079D8BD /* Project object */;
+}
