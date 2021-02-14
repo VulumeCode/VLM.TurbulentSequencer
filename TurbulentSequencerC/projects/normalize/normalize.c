@@ -1,5 +1,6 @@
 #include "ext.h"				// you must include this - it contains the external object's link to available Max functions
 #include "ext_obex.h"			// this is required for all objects using the newer style for writing objects.
+#include "math.h"
 
 typedef struct _normalize {		// defines our object's internal variables for each instance in a patch
 	t_object i_ob;
@@ -85,7 +86,7 @@ void normalize_bang(t_normalize *x)
 		}
 	}
 	double avg = sum / length;
-	double deviation = max(vmax - avg, avg - vmin);
+	double deviation = fmax(vmax - avg, avg - vmin);
 
 	t_atom* output = (t_atom*) sysmem_newptr(length * sizeof(t_atom));
 	for (short i = 0; i < length; i++) {
