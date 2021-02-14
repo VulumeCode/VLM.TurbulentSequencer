@@ -34,6 +34,160 @@
                ReferencedContainer = "container:projects/rotateSlider/rotateSlider.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2FBBEAD608F335360078DB84"
+               BuildableName = "calcprobs.mxo"
+               BlueprintName = "max-external"
+               ReferencedContainer = "container:projects/calcprobs/calcprobs.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2FBBEAD608F335360078DB84"
+               BuildableName = "curve.mxo"
+               BlueprintName = "max-external"
+               ReferencedContainer = "container:projects/curve/curve.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2FBBEAD608F335360078DB84"
+               BuildableName = "fftfilter.mxo"
+               BlueprintName = "max-external"
+               ReferencedContainer = "container:projects/fftfilter/fftfilter.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2FBBEAD608F335360078DB84"
+               BuildableName = "findTiesAndAccents.mxo"
+               BlueprintName = "max-external"
+               ReferencedContainer = "container:projects/findTiesAndAccents/findTiesAndAccents.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2FBBEAD608F335360078DB84"
+               BuildableName = "monoNote.mxo"
+               BlueprintName = "max-external"
+               ReferencedContainer = "container:projects/monoNote/monoNote.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2FBBEAD608F335360078DB84"
+               BuildableName = "normalize.mxo"
+               BlueprintName = "max-external"
+               ReferencedContainer = "container:projects/normalize/normalize.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2FBBEAD608F335360078DB84"
+               BuildableName = "randomCs.mxo"
+               BlueprintName = "max-external"
+               ReferencedContainer = "container:projects/randomCs/randomCs.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2FBBEAD608F335360078DB84"
+               BuildableName = "rotary.mxo"
+               BlueprintName = "max-external"
+               ReferencedContainer = "container:projects/rotary/rotary.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2FBBEAD608F335360078DB84"
+               BuildableName = "rotate.mxo"
+               BlueprintName = "max-external"
+               ReferencedContainer = "container:projects/rotate/rotate.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2FBBEAD608F335360078DB84"
+               BuildableName = "rotatePiano.mxo"
+               BlueprintName = "max-external"
+               ReferencedContainer = "container:projects/rotatePiano/rotatePiano.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2FBBEAD608F335360078DB84"
+               BuildableName = "shiftSlider.mxo"
+               BlueprintName = "max-external"
+               ReferencedContainer = "container:projects/shiftSlider/shiftSlider.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

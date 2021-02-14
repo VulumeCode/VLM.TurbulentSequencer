@@ -2,6 +2,39 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:projects/calcprobs/calcprobs.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:projects/curve/curve.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:projects/fftfilter/fftfilter.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:projects/findTiesAndAccents/findTiesAndAccents.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:projects/monoNote/monoNote.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:projects/normalize/normalize.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:projects/randomCs/randomCs.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:projects/rotary/rotary.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:projects/rotate/rotate.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:projects/rotatePiano/rotatePiano.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:projects/shiftSlider/shiftSlider.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:projects/rotateSlider/rotateSlider.xcodeproj">
    </FileRef>
    <FileRef
