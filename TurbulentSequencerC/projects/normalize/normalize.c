@@ -69,23 +69,23 @@ void normalize_assist(t_normalize *x, void *b, long m, long a, char *s) // 4 fin
 void normalize_bang(t_normalize *x)
 {
 	double sum = 0;
-	double min = INFINITY;
-	double max = -INFINITY;
+	double vmin = INFINITY;
+	double vmax = -INFINITY;
 
 	short length = x->i_ac;
 
 	for (short i = 0; i < length; i++) {
 		double d = x->input[i];
 		sum += d;
-		if (d < min) {
-			min = d;
+		if (d < vmin) {
+			vmin = d;
 		}
-		else if (d > max) {
-			max = d;
+		else if (d > vmax) {
+			vmax = d;
 		}
 	}
 	double avg = sum / length;
-	double deviation = max(max - avg, avg - min);
+	double deviation = max(vmax - avg, avg - vmin);
 
 	t_atom* output = (t_atom*) sysmem_newptr(length * sizeof(t_atom));
 	for (short i = 0; i < length; i++) {
