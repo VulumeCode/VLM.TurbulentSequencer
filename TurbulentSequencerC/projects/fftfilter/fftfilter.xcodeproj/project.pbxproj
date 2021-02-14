@@ -8,12 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		22CF11CC0EE9A90A0054F513 /* fftfilter.c in Sources */ = {isa = PBXBuildFile; fileRef = 22CF11CB0EE9A90A0054F513 /* fftfilter.c */; };
+		BF63945425D9921E0079D8BD /* _kiss_fft_guts.h in Headers */ = {isa = PBXBuildFile; fileRef = BF63945025D9921D0079D8BD /* _kiss_fft_guts.h */; };
+		BF63945525D9921E0079D8BD /* kiss_fft.c in Sources */ = {isa = PBXBuildFile; fileRef = BF63945125D9921D0079D8BD /* kiss_fft.c */; };
+		BF63945625D9921E0079D8BD /* kiss_fft.h in Headers */ = {isa = PBXBuildFile; fileRef = BF63945225D9921D0079D8BD /* kiss_fft.h */; };
+		BF63945725D9921E0079D8BD /* kiss_fft_log.h in Headers */ = {isa = PBXBuildFile; fileRef = BF63945325D9921D0079D8BD /* kiss_fft_log.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		22CF10220EE984600054F513 /* maxmspsdk.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = maxmspsdk.xcconfig; path = ../../maxmspsdk.xcconfig; sourceTree = SOURCE_ROOT; };
 		22CF11CB0EE9A90A0054F513 /* fftfilter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fftfilter.c; sourceTree = "<group>"; };
 		2FBBEAE508F335360078DB84 /* fftfilter.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fftfilter.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF63945025D9921D0079D8BD /* _kiss_fft_guts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _kiss_fft_guts.h; sourceTree = "<group>"; };
+		BF63945125D9921D0079D8BD /* kiss_fft.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kiss_fft.c; sourceTree = "<group>"; };
+		BF63945225D9921D0079D8BD /* kiss_fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_fft.h; sourceTree = "<group>"; };
+		BF63945325D9921D0079D8BD /* kiss_fft_log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_fft_log.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +38,10 @@
 		089C166AFE841209C02AAC07 /* iterator */ = {
 			isa = PBXGroup;
 			children = (
+				BF63945025D9921D0079D8BD /* _kiss_fft_guts.h */,
+				BF63945325D9921D0079D8BD /* kiss_fft_log.h */,
+				BF63945125D9921D0079D8BD /* kiss_fft.c */,
+				BF63945225D9921D0079D8BD /* kiss_fft.h */,
 				22CF10220EE984600054F513 /* maxmspsdk.xcconfig */,
 				22CF11CB0EE9A90A0054F513 /* fftfilter.c */,
 				19C28FB4FE9D528D11CA2CBB /* Products */,
@@ -52,6 +64,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF63945725D9921E0079D8BD /* kiss_fft_log.h in Headers */,
+				BF63945425D9921E0079D8BD /* _kiss_fft_guts.h in Headers */,
+				BF63945625D9921E0079D8BD /* kiss_fft.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +105,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 089C166AFE841209C02AAC07 /* iterator */;
@@ -126,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF63945525D9921E0079D8BD /* kiss_fft.c in Sources */,
 				22CF11CC0EE9A90A0054F513 /* fftfilter.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
