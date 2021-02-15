@@ -4,7 +4,7 @@
 typedef struct _monoNote {		// defines our object's internal variables for each instance in a patch
 	t_object i_ob;
 	long lastNote;
-	boolean lastTie;
+	bool lastTie;
 	double velScale;
 } t_monoNote;
 
@@ -90,8 +90,8 @@ void monoNote_list(t_monoNote* x, t_symbol* s, short ac, t_atom* av)
 	long vel = (long) atom_getlong(&av[2]);
 	double duration = atom_getfloat(&av[3]);
 
-	boolean tie  = duration == 120;
-	boolean rest = vel == 0;
+	bool tie  = duration == 120;
+	bool rest = vel == 0;
 
 	long outVel = (long) (vel * x->velScale);
 
