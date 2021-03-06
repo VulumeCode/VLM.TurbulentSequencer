@@ -2,7 +2,7 @@ VLM.Turbulent Sequencer
 ===
 
 
-    This repo contains the TypeScript and C code for the externals of the VLM.Turbulent Sequencer. The project underwent a few iterations going from only TS to TS+Java to finally TS+C. Now only the graphical elements use TS (compiled to JS) and all the rest is compiled C. All old code is kept for historical documentation and because TS is way easier to experiment with than C. 
+ > This repo contains the TypeScript and C code for the externals of the VLM.Turbulent Sequencer. The project underwent a few iterations going from only TS to TS+Java to finally TS+C. Now only the graphical elements use TS (compiled to JS) and all the rest is compiled C. All old code is kept for historical documentation and because TS is way easier to experiment with than C. 
 
 
 
