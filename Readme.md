@@ -14,8 +14,9 @@ Get it on Gumroad for updates https://gumroad.com/l/dRhWW
 Discuss on llllllllines https://llllllll.co/t/40271  
 Github for the TypeScript and C code https://github.com/VulumeCode/VLM.TurbulentSequencer  
 
+```
 _.~"(_.~"(_.~"(_.~"(_.~"(_.~"(_.~"(_.~"(_.~"(_.~"(
----
+```
 
 A very tweakable deterministic random sequence generator where all parameters are automatable.
 
@@ -29,8 +30,9 @@ It uses FFT and distributions to generate a sequence, so everything is repeatabl
 
 - "Morph" rotates the complex-number sequence from which the sequence is pulled.
 
+```
 ~^~^~Tone generation~^~^~^~^~^~
----
+```
 
 Tones are generated from a distribution of octaves and notes in the octave. It is kind of like a probability distribution, but there is no more randomness at this point. The filtered noise sequence is mapped to this distribution.
 
@@ -40,14 +42,17 @@ Tones are generated from a distribution of octaves and notes in the octave. It i
 
 - Set a white-keys only scale and steep distribution curve for the first ever meaningful mode-based random generation. Ionian and Dorian actually sound different! There are actual tonics!
 
-    ~^~^~Dynamics generation~^~^~^~^~
+```
+~^~^~Dynamics generation~^~^~^~^~
+```
 
 Dynamics are generated in a similar way. The sequence is split in 3 resizable regions which can be assigned Rest, Tie, and/or Accent.
 
 MIDI input velocity is taken into account when in MIDI clock mode.
 
+```
 ~^~^~Playback~^~^~^~^~^~^~^~^~
----
+```
 
 The resulting MIDI loop can be seen in the piano roll. Long notes tie to the next. Purple colored background notes are accented. Hollow notes are rests. "Fold" shows only possible notes, "Span" shows all from lowest to highest note.
 
@@ -59,8 +64,9 @@ There are 2 playback modes
 
 - Live Sync: Sync with Live's clock. Sloppy but has timeline sync. Prefer this option if you automate other parameters.
 
+```
 _.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._.~"~._
----
+```
 
 The zip contains the .amxd MIDI device and a project with presets with ideas for acid house, chords, minimalist music...
 
