@@ -81,3 +81,5 @@ Nudge/start/end loop controls.
 Documentation.  
 v2.0  
 Ported to C.  
+v2.1
+Apple Silicon build
