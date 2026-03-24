@@ -2,7 +2,7 @@
 	"compileOnSave": true,
 	"compilerOptions": {
 		"module": "CommonJS",
-		"target": "es3",
+		"target": "es5",
 		"sourceMap": false,
 		"strict": true,
 		"noImplicitAny": true,
@@ -10,6 +10,7 @@
 		"noEmitOnError": true,
 		"assumeChangesOnlyAffectDirectDependencies": true,
 		"downlevelIteration": true,
+		"ignoreDeprecations": "6.0",
 		"lib": [ "es7" ],
 		"outDir": "../VLM.Turbulent Sequencer Project/code/"
 	},

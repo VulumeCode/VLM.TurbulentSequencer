@@ -399,3 +399,4 @@ DerivedData/
 *.xcuserstate
 project.xcworkspace/
 xcuserdata/
+*.DS_Store

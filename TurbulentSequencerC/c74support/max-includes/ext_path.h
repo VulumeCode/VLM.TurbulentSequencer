@@ -206,7 +206,7 @@ short path_getsupportpath(void);
 #ifdef MAC_VERSION
 
 #ifndef __FILES__
-#include <Files.h>
+#include <CoreServices/CoreServices.h>
 #endif // __FILES__
 	
 short path_tofsref(C74_CONST short path, C74_CONST char *filename, FSRef *ref);
